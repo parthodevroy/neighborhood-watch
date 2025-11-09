@@ -2,7 +2,8 @@ import React from 'react';
 import Navber from '../Navber';
 import { Outlet, useLocation } from 'react-router';
 import Footer from '../Footer';
-import Homebar from '../Homebar';
+import Homebar from '../home/Homebar';
+
 
 const Root = () => {
 
@@ -12,7 +13,7 @@ const Root = () => {
 <header>
 
     <Navber></Navber>
-    {location.pathname === '/' && <Homebar />}
+    {location.pathname === '/' && <Homebar/>}
 
 </header>
 
