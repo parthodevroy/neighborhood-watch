@@ -7,6 +7,10 @@ import Issues from "../component/issues/Issues";
 import IssuDetails from "../component/Pages/IssuDetails";
 import Register from "../component/authentication/Register";
 import Login from "../component/authentication/Login";
+import Contributes from "../component/Pages/Contributes";
+import MyContributes from "../component/Pages/MyContributes";
+import PrivateRoute from "../component/privateroutes/PrivateRoutes";
+import AddIssu from "../component/Pages/AddIssu";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +34,24 @@ export const router = createBrowserRouter([
         {
           path:"/login",
           element:<Login></Login>
+        },
+        {
+          path:"/contributes/:id",
+          element:<PrivateRoute>
+            <Contributes></Contributes>
+          </PrivateRoute>
+        },
+        {
+          path:"mycontribution",
+          element:<PrivateRoute>
+            <MyContributes></MyContributes>
+          </PrivateRoute>
+        },
+        {
+          path:"/addissues",
+          element:<PrivateRoute>
+            <AddIssu></AddIssu>
+          </PrivateRoute>
         }
     ]
     

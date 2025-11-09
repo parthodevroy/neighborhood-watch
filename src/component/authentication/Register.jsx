@@ -1,6 +1,20 @@
-import React from 'react';
+
+import React, { useState } from 'react';
+
+
+import { use } from 'react';
+import { Authcontext } from '../../authcontext/Authcontext';
+import { Link, } from 'react-router';
+import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
+    const { userregister}=use(Authcontext)
+    
+    
+    const [error,setError]=useState("")
+
+    const [succcces,setSuccess]=useState(false)
+
 
   const handelregister = (e) => {
     e.preventDefault();
@@ -9,9 +23,28 @@ const Register = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    console.log(name, photo, email, password);
-  }
+    setError("");
+    setSuccess(false);
 
+    userregister(email, password)
+      .then(result => {
+        const createdUser = result.user;
+
+        updateProfile(createdUser, {
+          displayName: name,
+          photoURL: photo
+        })
+          .then(() => {
+            console.log("Profile updated:", createdUser);
+            setSuccess(true);
+            e.target.reset();
+          })
+          .catch(err => {
+            setError(err.message);
+          });
+      })
+      .catch(err => setError(err.message));
+  };
   return (
     <div className="hero bg-green-50 min-h-screen flex items-center justify-center">
       <div className="card bg-card w-full max-w-md shadow-2xl rounded-2xl p-6">
@@ -40,7 +73,14 @@ const Register = () => {
           <button type="submit" className="btn bg-btn text-white mt-4 hover-glow">
             Register Now
           </button>
+          <p>Alredy Have An Account <Link to={"/login"}><span className='text-xl text-red-500'>Login</span></Link></p>
         </form>
+         {
+            error&&<p className='text-red-500'>{error}</p>
+        },
+        {
+            succcces&& <p className='text-green-600'>Registation Succesful</p>
+        }
       </div>
     </div>
   );

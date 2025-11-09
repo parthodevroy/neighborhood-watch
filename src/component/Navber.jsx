@@ -1,31 +1,78 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link, NavLink } from 'react-router';
+import { Authcontext } from '../authcontext/Authcontext';
 
 const Navber = () => {
-  const link = <>
-    <li className="mx-2"> {/* horizontal margin for spacing */}
-      <NavLink
-        to="/"
-        className={({ isActive }) => isActive 
-          ? 'text-red-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all' 
-          : 'text-white hover:text-[#06b6d4] px-2 py-1 transition-all'
-        }
-      >
-        Home
-      </NavLink>
-    </li>
-    <li className="mx-2">
-      <NavLink
-        to="/issues"
-        className={({ isActive }) => isActive 
-          ? 'text-red-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all' 
-          : 'text-white hover:text-[#06b6d4] px-2 py-1 transition-all'
-        }
-      >
-        Issues
-      </NavLink>
-    </li>
-  </>;
+
+  const {user ,signout}=use(Authcontext)
+
+  const handellogout=()=>{
+    signout()
+  }
+  const link = 
+     <>
+      {/* মাঝখানের লিংকগুলো flex, gap ও proper alignment */}
+      <li className="flex flex-row items-center gap-3">
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            isActive
+              ? 'text-red-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all'
+              : 'text-white hover:text-[#06b6d4] px-2 py-1 transition-all'
+          }
+        >
+          Home
+        </NavLink>
+
+        <NavLink
+          to="/issues"
+          className={({ isActive }) =>
+            isActive
+              ? 'text-red-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all'
+              : 'text-white hover:text-[#06b6d4] px-2 py-1 transition-all'
+          }
+        >
+          Issues
+        </NavLink>
+
+        {/* ... Onnano default links ekhane thakbe ... */}
+
+{/* Logged-in user-er jonno links (user && ...) */}
+{user && (
+    <>
+        {/* 1. My Contribution Link */}
+        <li className="mx-2">
+            <NavLink
+                to="/mycontribution"
+                className={({ isActive }) =>
+                    isActive
+                        ? 'text-red-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all'
+                        : 'text-white hover:text-[#06b6d4] px-2 py-1 transition-all'
+                }
+            >
+                My Contribution
+            </NavLink>
+        </li>
+
+        {/* 2. Add Issue Link */}
+        <li className="mx-2">
+            <NavLink
+                to="/addissues" // <<< Shothik route path jog kora holo
+                className={({ isActive }) =>
+                    isActive
+                        ? 'text-red-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all'
+                        : 'text-white hover:text-[#06b6d4] px-2 py-1 transition-all'
+                }
+            >
+                Add Issue
+            </NavLink>
+        </li>
+    </>
+)}
+
+{/* ... Onnano links ekhane thakbe ... */}
+      </li>
+    </>
 
   return (
     <div className="navbar bg-main text-white shadow-md px-6"> {/* horizontal padding */}
@@ -51,11 +98,22 @@ const Navber = () => {
         <ul className="menu menu-horizontal px-4">{link}</ul> {/* some extra padding */}
       </div>
       <div className="navbar-end">
+        {user? (
+          <button
+            onClick={handellogout}
+            className="bg-red-500 text-white px-6 py-2 rounded-xl font-semibold hover-glow"
+          >
+            Log Out
+          </button>
+        ):
+        
+        
+        
         <Link to={"/register"}>
           <button className="bg-btn text-white px-6 py-2 rounded-xl font-semibold hover-glow">
             Log In
           </button>
-        </Link>
+        </Link>}
       </div>
     </div>
   );

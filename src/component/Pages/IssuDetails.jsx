@@ -1,11 +1,31 @@
 // src/component/issues/SeeDetails.jsx
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import React, { use, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import { Authcontext } from "../../authcontext/Authcontext";
 
 const IssuDetails = () => {
+
+    const {user}=use(Authcontext)
   const { id } = useParams(); // URL থেকে id নিচ্ছে
   const [issue, setIssue] = useState(null);
   const [loading, setLoading] = useState(true);
+
+
+  const navigate = useNavigate();
+
+const handleContribute = () => {
+  if (user) {
+    // User logged in → contribution page / action
+    console.log("User can contribute:", user);
+    // যদি page নিয়ে যেতে চাও
+    navigate(`/contributes/${id}`);
+  } else {
+    // User not logged in → login page এ redirect
+    navigate("/login", { state: { from: `/issues/${id}` } }); 
+    // state পাঠাচ্ছি যাতে login পরে আবার ফিরে আসতে পারে
+  }
+};
+
 
   // নির্দিষ্ট issue fetch করা
   useEffect(() => {
@@ -103,7 +123,7 @@ const IssuDetails = () => {
 
           {/* Action Button */}
           <div className="mt-6">
-            <button className="btn btn-success bg-btn rounded-2xl text-xls w-full sm:w-auto">
+            <button onClick={handleContribute} className="btn btn-success bg-btn rounded-2xl text-xls w-full sm:w-auto">
               💰 Contribute to Clean-Up
             </button>
           </div>
