@@ -29,7 +29,7 @@ const handleContribute = () => {
 
   // নির্দিষ্ট issue fetch করা
   useEffect(() => {
-    fetch(`http://localhost:3000/issues`)
+    fetch(`https://neighborhood-watch-server.vercel.app/issues`)
       .then((res) => res.json())
       .then((data) => {
         const found = data.find((item) => item._id === id);

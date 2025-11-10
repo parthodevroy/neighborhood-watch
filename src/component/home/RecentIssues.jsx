@@ -5,18 +5,18 @@ const RecentIssues = () => {
     const [issues, setIssues] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/issues")
+        fetch("https://neighborhood-watch-server.vercel.app/issues")
             .then(res => res.json())
-            .then(data => setIssues(data.slice(0,6))) // Latest 6 issues
+            .then(data => setIssues(data.slice(0,6))) 
             .catch(err => console.error(err));
     }, []);
 
     return (
-        <div className="max-w-6xl mx-auto my-10">
+        <div className="max-w-6xl  mx-auto my-10">
             <h2 className="text-3xl font-bold mb-6 text-center">Recent Issues</h2>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2  md:grid-cols-3 gap-6">
                 {issues.map(issue => (
-                    <div key={issue._id} className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col">
+                    <div key={issue._id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:scale-105 transition-transform flex flex-col">
                         <img src={issue.image} alt={issue.title} className="h-40 w-full object-cover" />
                         <div className="p-4 flex flex-col flex-grow">
                             <h3 className="font-semibold text-lg">{issue.title}</h3>

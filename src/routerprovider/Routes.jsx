@@ -11,6 +11,7 @@ import Contributes from "../component/Pages/Contributes";
 import MyContributes from "../component/Pages/MyContributes";
 import PrivateRoute from "../component/privateroutes/PrivateRoutes";
 import AddIssu from "../component/Pages/AddIssu";
+import UpdateProfile from "../component/authentication/UpdateProfile";
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ export const router = createBrowserRouter([
     children:[
         {
             path:"/issues",
-            loader:()=>fetch("http://localhost:3000/issues"),
+            loader:()=>fetch("https://neighborhood-watch-server.vercel.app/issues"),
             element:<Issues></Issues>
             
         },
@@ -52,6 +53,11 @@ export const router = createBrowserRouter([
           element:<PrivateRoute>
             <AddIssu></AddIssu>
           </PrivateRoute>
+        },
+        {
+          path:"/updateprofile",
+          element:<PrivateRoute><UpdateProfile>
+            </UpdateProfile></PrivateRoute>
         }
     ]
     

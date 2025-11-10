@@ -9,7 +9,7 @@ const Contribute = () => {
   const { user } = useContext(Authcontext); // user.email, user.displayName
 
   useEffect(() => {
-    fetch(`http://localhost:3000/issues/${id}`)
+    fetch(`https://neighborhood-watch-server.vercel.app/issues/${id}`)
       .then((res) => res.json())
       .then((data) => setIssue(data));
   }, [id]);
@@ -37,7 +37,7 @@ const Contribute = () => {
       date: new Date(),
     };
 
-    fetch("http://localhost:3000/contribute", {
+    fetch("https://neighborhood-watch-server.vercel.app/contribute", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(contribution),
@@ -56,7 +56,7 @@ const Contribute = () => {
   if (!issue) return <p>Loading...</p>;
 
   return (
-    <div className="max-w-lg mx-auto bg-white p-6 shadow-lg rounded-xl mt-10">
+    <div className="max-w-lg mx-auto bg-white border-amber-400 pb-16 p-6 shadow-lg rounded-xl mt-10">
       <img src={issue.image} alt={issue.title} className="rounded-lg mb-4" />
       <h2 className="text-2xl font-semibold mb-2">{issue.title}</h2>
       <p className="text-gray-600 mb-4">{issue.description}</p>
@@ -100,7 +100,7 @@ const Contribute = () => {
 
         <button
           type="submit"
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 mt-2"
+          className="bg-blue-600 text-white p-4 px-4 py-2 rounded-lg hover:bg-blue-700 mt-2"
         >
           Contribute
         </button>
