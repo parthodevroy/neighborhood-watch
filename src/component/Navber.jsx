@@ -35,7 +35,7 @@ const Navbar = () => {
               : "text-black hover:text-[#06b6d4] px-2 py-1 transition-all"
           }
         >
-          Issues
+         All Issues
         </NavLink>
       </li>
 
@@ -62,9 +62,22 @@ const Navbar = () => {
                   : "text-black hover:text-[#06b6d4] px-2 py-1 transition-all"
               }
             >
-              Add Issue
+              Report Issues
             </NavLink>
           </li>
+
+          <li className="mx-2">
+      <NavLink
+        to="/myissues"
+        className={({ isActive }) =>
+          isActive
+            ? "text-yellow-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all"
+            : "text-white hover:text-[#06b6d4] px-2 py-1 transition-all"
+        }
+      >
+        My Reported Issues
+      </NavLink>
+    </li>
         </>
       )}
     </>

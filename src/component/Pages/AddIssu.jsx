@@ -20,7 +20,7 @@ const AddIssu = () => {
 
     const newIssue = { title, category, location, description, image, amount, status, email, date };
 
-    fetch("https://neighborhood-watch-server.vercel.app/issues", {
+    fetch("https://neighborhood-watch-server.vercel.app/userissues", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newIssue)
