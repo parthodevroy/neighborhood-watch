@@ -11,6 +11,13 @@ const Navbar = () => {
     signout();
     setShowMenu(false);
   };
+  const handelTheme = (checked) => {
+  document.documentElement.setAttribute(
+    "data-theme",
+    checked ? "dark" : "light"
+  );
+};
+
 
   const linkItems = (
     <>
@@ -137,6 +144,9 @@ const Navbar = () => {
                     >
                       Log Out
                     </button>
+                  </li>
+                  <li>
+                    <input onChange={(e)=>handelTheme(e.target.checked)} type="checkbox" defaultChecked className="toggle" />
                   </li>
                 </ul>
               </div>

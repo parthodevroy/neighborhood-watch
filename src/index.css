@@ -1,38 +1,26 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
 
 @import "tailwindcss";
-@plugin "daisyui";
 
-/* 🌇 Custom Gradient Palette */
-:root {
-  --bg-gradient: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #06b6d4 100%);
-  --btn-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
-  --card-gradient: linear-gradient(145deg, #ffffff 0%, #e0f2fe 100%);
-  --accent: #0ea5e9;
-  --text-light: #f9fafb;
-  --text-dark: #0f172a;
-}
-
+@import "daisyui";
 
 .bg-main {
-  background: var(--bg-gradient);
+  background-color: var(--bg-main);
 }
 
-.bg-btn {
-  background: var(--btn-gradient);
+.text-main {
+  color: var(--text-main);
 }
 
 .bg-card {
   background: var(--card-gradient);
 }
 
+.bg-btn {
+  background: var(--btn-gradient);
+}
 
 .hover-glow:hover {
   box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
   transform: scale(1.02);
   transition: all 0.3s ease-in-out;
 }
-
-
