@@ -7,20 +7,39 @@ const MyIssues = () => {
   const [issues, setIssues] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // ✅ Load only the user's issues
-  useEffect(() => {
-    if (user?.email) {
-      fetch(`https://neighborhood-watch-server.vercel.app/userissues?email=${user.email}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setIssues(data);
-          setLoading(false);
-        })
-        .catch((err) => console.error(err));
-    }
-  }, [user]);
+  //  Load 
+ useEffect(() => {
+  if (!user) return; // user না থাকলে কিছু করো না
+  if (!user.email || !user.accessToken) return;
 
-  // ✅ Delete issue
+  const fetchIssues = async () => {
+    try {
+      const res = await fetch(
+        `https://neighborhood-watch-server.vercel.app/userissues?email=${user.email}`,
+        {
+          headers: {
+            authorization: `Bearer ${user.accessToken}`,
+          },
+        }
+      );
+
+      if (!res.ok) throw new Error("Failed to fetch issues");
+
+      const data = await res.json();
+      setIssues(data);
+    } catch (err) {
+      console.error("Error fetching issues:", err);
+      Swal.fire("Error", "Could not load issues. Try again later.", "error");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchIssues();
+}, [user]);
+
+
+  //  Delete issue
   const handleDelete = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -47,7 +66,7 @@ const MyIssues = () => {
     });
   };
 
-  // ✅ Edit issue
+  //  Edit issue
   const handleEdit = (issue) => {
     Swal.fire({
       title: "Edit Issue",
@@ -91,7 +110,9 @@ const MyIssues = () => {
     });
   };
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
+ if (loading) return <p className="text-center mt-10">Loading...</p>;
+if (!user) return <p className="text-center mt-10">Please log in to view your issues.</p>;
+
 
   return (
     <div className="max-w-6xl mx-auto py-10 px-4">

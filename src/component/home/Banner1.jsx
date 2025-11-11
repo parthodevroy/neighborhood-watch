@@ -1,0 +1,65 @@
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router";
+
+const Banner1 = () => {
+  const slides = [
+    {
+      image:
+        "https://media.istockphoto.com/id/1198478051/photo/planting-tree-in-public-park.jpg?s=1024x1024&w=is&k=20&c=NjeQjDZyG_rB8mBSA7VSDZZJ-UQMhkgMHTc-JktmWSY=",
+      text: "Join Hands for a Greener Neighborhood",
+    },
+    {
+      image:
+        "https://cdn.pixabay.com/photo/2013/07/05/12/20/rubbish-143465_1280.jpg",
+      text: "Report Issues, Make a Change",
+    },
+    {
+      image:
+        "https://cdn.pixabay.com/photo/2024/04/17/01/37/ai-generated-8701165_1280.png",
+      text: "Your Contribution Matters",
+    },
+    {
+      image:
+        "https://cdn.pixabay.com/photo/2018/08/01/02/38/person-3576382_1280.jpg",
+      text: "Together We Can Make a Difference",
+    },
+  ];
+
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 4000); // 4 seconds per slide
+
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
+  return (
+    <div className="relative h-[600px] w-full overflow-hidden">
+      {slides.map((slide, idx) => (
+        <div
+          key={idx}
+          className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ${
+            idx === current ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ backgroundImage: `url(${slide.image})` }}
+        >
+          <div className="h-full w-full bg-black/40 flex flex-col justify-center items-center px-4 text-center">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white drop-shadow-lg">
+              {slide.text}
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl text-white mt-4 drop-shadow-md">
+              Make a difference in your community
+            </p>
+            <button className="mt-6 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition">
+             <Link to={"/issues"}> Get Involved</Link>
+            </button>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export default Banner1;

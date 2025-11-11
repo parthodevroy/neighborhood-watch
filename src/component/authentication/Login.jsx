@@ -1,6 +1,6 @@
 import React, { use, useState } from 'react';
 
-import { useLocation, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 
 import { Authcontext } from '../../authcontext/Authcontext';
 
@@ -63,6 +63,8 @@ const Login = () => {
             Login
           </button>
         </form>
+                  <p>Create An Account <Link to={"/register"}><span className='text-xl text-red-500'>Register</span></Link></p>
+
 
         <div className="mt-4 text-center">
           <p className="text-gray-500 mb-2">OR</p>

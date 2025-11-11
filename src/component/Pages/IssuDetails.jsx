@@ -1,12 +1,12 @@
 // src/component/issues/SeeDetails.jsx
 import React, { use, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { Authcontext } from "../../authcontext/Authcontext";
 
 const IssuDetails = () => {
 
     const {user}=use(Authcontext)
-  const { id } = useParams(); // URL থেকে id নিচ্ছে
+  const { id } = useParams(); 
   const [issue, setIssue] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -15,33 +15,57 @@ const IssuDetails = () => {
 
 const handleContribute = () => {
   if (user) {
-    // User logged in → contribution page / action
-    console.log("User can contribute:", user);
-    // যদি page নিয়ে যেতে চাও
+    
     navigate(`/contributes/${id}`);
+    
   } else {
-    // User not logged in → login page এ redirect
+    
     navigate("/login", { state: { from: `/issues/${id}` } }); 
-    // state পাঠাচ্ছি যাতে login পরে আবার ফিরে আসতে পারে
+   
   }
 };
 
+// console.log(user);
 
-  // নির্দিষ্ট issue fetch করা
-  useEffect(() => {
-    fetch(`https://neighborhood-watch-server.vercel.app/issues`)
-      .then((res) => res.json())
-      .then((data) => {
-        const found = data.find((item) => item._id === id);
-        setIssue(found);
-        setLoading(false);
-      })
-      .catch((err) => {
+
+
+useEffect(() => {
+    const fetchIssue = async () => {
+      try {
+        setLoading(true);
+
+        //  console.log(user.accessToken)
+
+        const res = await fetch(
+          `https://neighborhood-watch-server.vercel.app/issues/${id}`,
+          {
+            headers: {
+              // authorization: `Bearer ${user.accessToken}`
+             
+            },
+           
+            
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error(`Failed to fetch: ${res.status}`);
+        }
+
+        const data = await res.json();
+        setIssue(data);
+      } catch (err) {
         console.error("Error fetching issue:", err);
+      } finally {
         setLoading(false);
-      });
-  }, [id]);
+      }
+    };
 
+    fetchIssue();
+    
+  }, [id, user]);
+
+  // ✅ Loading state
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen text-lg text-gray-600">
@@ -50,6 +74,7 @@ const handleContribute = () => {
     );
   }
 
+  // ✅ No issue found state
   if (!issue) {
     return (
       <div className="flex justify-center items-center h-screen text-lg text-red-600">
@@ -57,6 +82,7 @@ const handleContribute = () => {
       </div>
     );
   }
+
 
   const {
     title,
@@ -85,7 +111,7 @@ const handleContribute = () => {
             <span className="font-semibold">Category:</span> {category} |{" "}
             <span className="font-semibold">Location:</span> {location}
           </p>
-
+ 
           <p className="text-gray-700">{description}</p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-700">
@@ -122,9 +148,18 @@ const handleContribute = () => {
           </div>
 
           {/* Action Button */}
-          <div className="mt-6">
-            <button onClick={handleContribute} className="btn btn-success bg-btn rounded-2xl text-xls w-full sm:w-auto">
+          <div className="mt-6  flex justify-between">
+            <button onClick={handleContribute} className="btn hover-glow btn-success bg-btn rounded-2xl text-xls w-full sm:w-auto">
               💰 Contribute to Clean-Up
+            </button>
+            <button onClick={handleContribute} className="btn hover-glow btn-success bg-btn rounded-2xl text-xls w-full sm:w-auto">
+             💰 Pay
+            </button>
+            <button  className="btn btn-success hover-glow bg-btn rounded-2xl text-xls w-full sm:w-auto">
+              <Link to={"/addissues"}> Report Issues</Link>
+            </button>
+            <button  className="btn btn-success hover-glow bg-btn rounded-2xl text-xls w-full sm:w-auto">
+               <Link to={"/mycontribution"}>Edid</Link>
             </button>
           </div>
         </div>

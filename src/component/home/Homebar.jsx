@@ -33,16 +33,24 @@ import Banner from './Banner';
 import CategoryCards from './CategoryCards';
 import RecentIssues from './RecentIssues';
 import Stats from './Stats';
+import Banner1 from './Banner1';
 
 const Homebar = () => {
     return (
         <div>
             {/* <Home/> */}
-            <Banner/>
+            <Banner1/>
+
             <CategoryCards />
-            <RecentIssues />
+             <RecentIssues />
+             
+            
+           
+           
             <Stats />
             <VolunteerCTA/>
+
+            <Banner/>
         </div>
     );
 };

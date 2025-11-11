@@ -2,30 +2,44 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const Issue = ({ issu }) => {
-  const { title, category, location, description, image, amount,_id } = issu;
+  const { title, category, location, description, image, status, amount, _id } = issu;
 
   return (
-    <div className="card bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col">
+    <div className="card bg-card shadow-lg rounded-2xl overflow-hidden flex flex-col h-full">
+     
       <img src={image} alt={title} className="h-48 w-full object-cover" />
-      
-      {/* এই div টি flex + justify-between হবে */}
-      <div className="p-4 flex flex-col justify-between flex-grow">
-        <div>
-          <h2 className="text-xl font-semibold text-gray-800">{title}</h2>
-          <p className="text-sm text-gray-500 mb-2">
-            {category} • {location}
-          </p>
-          <p className="text-gray-700 mb-3">{description}</p>
-          <p className="font-bold text-teal-600">Amount: ${amount}</p>
-        </div>
 
-        <div className="mt-4">
-           <Link to={`/issues/${issu._id}`}>
-                <button className="btn bg-btn btn-sm w-full mt-3">
-                  See Details
-                </button>
-              </Link>
-        </div>
+      
+      <div className="p-4 flex flex-col flex-grow">
+        <h2 className="text-xl text-purple-600 font-semibold mb-1">{title}</h2>
+        <p className="text-sm text-gray-500 mb-2">
+          <span className="text-lg font-semibold text-red-600">{category}</span> • {location}
+        </p>
+        <p className="text-gray-700 flex-grow">{description}</p>
+      </div>
+
+     
+      <div className="px-4 pt-3 pb-4 flex justify-between items-center">
+        <p className="font-bold text-teal-600">Amount: ${amount}</p>
+
+        <span
+          className={`px-3 py-1 text-sm font-semibold rounded-full ${
+            status === "ongoing"
+              ? "bg-yellow-100 text-yellow-700"
+              : status === "completed"
+              ? "bg-green-400 text-black"
+              : "bg-blue-100 text-blue-700"
+          }`}
+        >
+          {status || "Pending"}
+        </span>
+      </div>
+
+     
+      <div className="px-4 pb-4">
+        <Link to={`/issues/${_id}`}>
+          <button className="btn bg-btn hover-glow btn-sm w-full mt-2">See Details</button>
+        </Link>
       </div>
     </div>
   );

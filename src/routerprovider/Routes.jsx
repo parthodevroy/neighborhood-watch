@@ -27,7 +27,9 @@ export const router = createBrowserRouter([
         },
         {
           path:"/issues/:id",
-          element:<IssuDetails></IssuDetails>
+          element:
+            <IssuDetails></IssuDetails>
+         
         },
         {
           path:"/register",

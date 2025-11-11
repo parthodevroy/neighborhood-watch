@@ -8,23 +8,48 @@ const MyContributes = () => {
   const { user } = useContext(Authcontext);
   const [contributions, setContributions] = useState([]);
   const [editing, setEditing] = useState(null);
-  const [deleting, setDeleting] = useState(null); // 🧹 Delete confirm modal state
+  const [deleting, setDeleting] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  // Fetch 
   useEffect(() => {
-    if (user?.email) {
-      fetch(`https://neighborhood-watch-server.vercel.app/mycontributions/${user.email}`)
+    if (user?.email && user?.accessToken) {
+      fetch(`https://neighborhood-watch-server.vercel.app/mycontributions/${user.email}`, {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
+      })
         .then((res) => res.json())
-        .then((data) => setContributions(data));
+        .then((data) => {
+          if (Array.isArray(data)) {
+            setContributions(data);
+          } else {
+            console.error("Expected array, got:", data);
+            setContributions([]);
+          }
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setContributions([]);
+          setLoading(false);
+        });
     }
   }, [user]);
 
+  // Delete contribution
   const handleConfirmDelete = async () => {
-    if (!deleting) return;
+    if (!deleting || !user?.accessToken) return;
 
     try {
       const res = await fetch(
         `https://neighborhood-watch-server.vercel.app/mycontributions/${deleting._id}`,
-        { method: "DELETE" }
+        {
+          method: "DELETE",
+          headers: {
+            authorization: `Bearer ${user.accessToken}`,
+          },
+        }
       );
       const data = await res.json();
 
@@ -42,6 +67,7 @@ const MyContributes = () => {
     setDeleting(null);
   };
 
+  // Download PDF
   const downloadPDF = () => {
     const doc = new jsPDF();
     doc.setFontSize(18);
@@ -63,10 +89,13 @@ const MyContributes = () => {
     doc.save("My_Contributions.pdf");
   };
 
+  // Update contribution
   const handleUpdate = async (e) => {
     e.preventDefault();
+    if (!editing || !user?.accessToken) return;
+
     const form = e.target;
-    const amount = form.amount.value;
+    const amount = parseFloat(form.amount.value);
     const updatedData = { amount };
 
     try {
@@ -74,7 +103,10 @@ const MyContributes = () => {
         `https://neighborhood-watch-server.vercel.app/mycontributions/${editing._id}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${user.accessToken}`,
+          },
           body: JSON.stringify(updatedData),
         }
       );
@@ -96,6 +128,8 @@ const MyContributes = () => {
     }
   };
 
+  if (loading) return <p className="text-center mt-10">Loading...</p>;
+
   return (
     <div className="p-6">
       <Toaster position="top-center" />
@@ -104,7 +138,10 @@ const MyContributes = () => {
       </h2>
 
       <div className="mb-4 text-center">
-        <button onClick={downloadPDF} className="btn bg-green-600 text-white">
+        <button
+          onClick={downloadPDF}
+          className="btn bg-green-600 text-white px-4 py-2"
+        >
           📄 Download PDF
         </button>
       </div>
@@ -130,6 +167,9 @@ const MyContributes = () => {
                 <p className="text-sm text-gray-600">
                   Amount: <span className="font-bold">${c.amount}</span>
                 </p>
+                <p className="text-sm text-gray-600">
+                  Location: <span className="font-bold">{c.location}</span>
+                </p>
                 <p className="text-sm text-gray-500">
                   Date: {new Date(c.date).toLocaleDateString()}
                 </p>
@@ -137,12 +177,12 @@ const MyContributes = () => {
                 <div className="card-actions justify-between mt-4">
                   <button
                     onClick={() => setEditing(c)}
-                    className="btn btn-sm bg-blue-500 text-white"
+                    className="btn btn-sm bg-btn text-white"
                   >
                     Update
                   </button>
                   <button
-                    onClick={() => setDeleting(c)} // 🧹 Open confirm modal
+                    onClick={() => setDeleting(c)}
                     className="btn btn-sm bg-red-500 text-white"
                   >
                     Delete
@@ -154,7 +194,7 @@ const MyContributes = () => {
         </div>
       )}
 
-      {/* ✏️ Update Modal */}
+      {/*  Update M*/}
       {editing && (
         <dialog id="edit_modal" className="modal modal-open">
           <div className="modal-box bg-white">
@@ -195,7 +235,7 @@ const MyContributes = () => {
         </dialog>
       )}
 
-      {/* 🗑️ Delete Confirmation Modal */}
+      {/* Delete */}
       {deleting && (
         <dialog id="delete_modal" className="modal modal-open">
           <div className="modal-box bg-white">

@@ -1,75 +1,79 @@
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { 
+  createUserWithEmailAndPassword, 
+  GoogleAuthProvider, 
+  onAuthStateChanged, 
+  signInWithEmailAndPassword, 
+  signInWithPopup, 
+  signOut, 
+  getIdToken 
+} from "firebase/auth";
 
 import { auth } from "../component/authentication/firebase.init";
 import { Authcontext } from "./Authcontext";
 import { useEffect, useState } from "react";
 
+const Authprovider = ({ children }) => {
+  const provider = new GoogleAuthProvider();
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  //  Registration
+  const userregister = (gmail, password) => {
+    return createUserWithEmailAndPassword(auth, gmail, password);
+  };
 
+  //  Login
+  const userlogin = (gmail, password) => {
+    return signInWithEmailAndPassword(auth, gmail, password);
+  };
 
+  // Google Login
+  const googlelogin = () => {
+    return signInWithPopup(auth, provider);
+  };
 
+  // Logout
+  const signout = () => {
+    return signOut(auth);
+  };
 
-
-const Authprovider = ({children}) => {
-
-    const provider = new GoogleAuthProvider();
-    const [user,setUser]=useState(null)
-
-    const [loading, setLoading] = useState(true);
-
-    const userregister=(gmail,password)=>{
-        return createUserWithEmailAndPassword(auth,gmail,password)
-    }
-    const userlogin=(gmail,password)=>{
-        return signInWithEmailAndPassword (auth,gmail,password)
-    }
-    const googlelogin=()=>{
-        return signInWithPopup(auth,provider)
+  //  user set
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        try {
         
-    }
-    const signout=()=>{
-        signOut(auth).then(()=>{
-
-        }).catch(error=>{
-            console.log(error);
-            
-        })
-
-    }
-
-    useEffect(()=>{
-        const loginuser=onAuthStateChanged(auth,(CurrentUser)=>{
-            console.log("click by current user",CurrentUser);
-            setUser(CurrentUser)
-            setLoading(false)
-        })
-        return ()=>{
-            loginuser
+          const token = await getIdToken(currentUser);
+          setUser({ 
+            ...currentUser, 
+            accessToken: token  
+          });
+        } catch (error) {
+          console.error("Error fetching token:", error);
         }
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    });
 
-    },[])
+    return () => unsubscribe();
+  }, []);
 
-    const userinfo={
-       userregister,
-        userlogin,
-        user,
-        signout,
-        loading,
-         googlelogin
-    //     contextuser,
-    //    contextlogin,
-    //   signout,
-    //   googlelogin,
-    }
+  const userinfo = {
+    userregister,
+    userlogin,
+    user,
+    signout,
+    loading,
+    googlelogin,
+  };
 
-    
-    return (
-        <Authcontext value={userinfo}>
-            {children}
-        </Authcontext>
-    
-    
-    );
+  return (
+    <Authcontext.Provider value={userinfo}>
+      {children}
+    </Authcontext.Provider>
+  );
 };
 
 export default Authprovider;

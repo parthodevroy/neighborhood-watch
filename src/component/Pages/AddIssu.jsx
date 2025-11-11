@@ -22,7 +22,9 @@ const AddIssu = () => {
 
     fetch("https://neighborhood-watch-server.vercel.app/userissues", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+        authorization:`Bearer ${user.accessToken}`
+       },
       body: JSON.stringify(newIssue)
     })
       .then((res) => res.json())

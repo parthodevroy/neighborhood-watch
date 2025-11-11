@@ -72,7 +72,7 @@ const Navbar = () => {
         className={({ isActive }) =>
           isActive
             ? "text-yellow-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all"
-            : "text-white hover:text-[#06b6d4] px-2 py-1 transition-all"
+            : "text-black hover:text-[#06b6d4] px-2 py-1 transition-all"
         }
       >
         My Reported Issues
