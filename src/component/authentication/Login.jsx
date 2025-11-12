@@ -3,12 +3,13 @@ import React, { use, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 
 import { Authcontext } from '../../authcontext/Authcontext';
+import Swal from 'sweetalert2';
 
 const Login = () => {
   const { userlogin, googlelogin } = use(Authcontext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from || "/";
+  const from = location.state?.from || "/issues";
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
@@ -23,7 +24,8 @@ const Login = () => {
       .then(result => {
         console.log("User:", result.user);
         setSuccess(true);
-        navigate(from);
+        navigate(from, { replace: true });
+        
         e.target.reset();
       })
       .catch(err => {
@@ -32,16 +34,40 @@ const Login = () => {
       });
   };
 
+  
+
   // Google login
   const handleGoogleLogin = () => {
   googlelogin()
     .then(result => {
       console.log("Google user:", result.user);
       setSuccess(true);
-      navigate(from); // Login শেষে redirect
-    })
+      navigate(from); })
     .catch(err => setError(err.message));
 };
+
+// // forget psss
+
+// const handleForgotPassword = async () => {
+//   const { value: email } = await Swal.fire({
+//     title: "Reset Password",
+//     input: "email",
+//     inputLabel: "Enter your email",
+//     inputPlaceholder: "Email address",
+//     showCancelButton: true,
+//   });
+
+//   if (!email) return; 
+
+//   forgotPassword(email)
+//     .then(() => {
+//       Swal.fire("Success!", "Password reset email sent! Check your inbox.", "success");
+//     })
+//     .catch(err => {
+//       Swal.fire("Error!", err.message, "error");
+//     });
+// };
+
 
   return (
     <div className="hero bg-green-50 min-h-screen flex items-center justify-center">
@@ -58,6 +84,12 @@ const Login = () => {
             <label className="label font-semibold text-gray-700">Password</label>
             <input type="password" name='password' className="input input-bordered w-full" placeholder="Password" />
           </div>
+          {/* <div 
+            className="text-blue-500 cursor-pointer underline text-sm"
+            onClick={handleForgotPassword}
+          >
+            Forget Password?
+          </div> */}
 
           <button type="submit" className="btn pb-2 bg-btn text-white mt-4 hover-glow">
             Login
@@ -69,7 +101,7 @@ const Login = () => {
         <div className="mt-4 text-center">
           <p className="text-gray-500 mb-2">OR</p>
           <button
-            type="button" // important! না হলে form submit হবে
+            type="button" 
             onClick={handleGoogleLogin}
             className="btn bg-white text-black border-[#e5e5e5] flex items-center justify-center gap-2 w-full"
           >

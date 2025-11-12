@@ -5,12 +5,12 @@ const Banner1 = () => {
   const slides = [
     {
       image:
-        "https://media.istockphoto.com/id/1198478051/photo/planting-tree-in-public-park.jpg?s=1024x1024&w=is&k=20&c=NjeQjDZyG_rB8mBSA7VSDZZJ-UQMhkgMHTc-JktmWSY=",
+        "https://images.unsplash.com/photo-1760001552685-fa470d9cd473?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170",
       text: "Join Hands for a Greener Neighborhood",
     },
     {
       image:
-        "https://cdn.pixabay.com/photo/2013/07/05/12/20/rubbish-143465_1280.jpg",
+        "https://images.unsplash.com/photo-1758599668932-484f54cdf48f?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1332",
       text: "Report Issues, Make a Change",
     },
     {
@@ -20,7 +20,7 @@ const Banner1 = () => {
     },
     {
       image:
-        "https://cdn.pixabay.com/photo/2018/08/01/02/38/person-3576382_1280.jpg",
+        "https://images.unsplash.com/photo-1758599667717-27c61bcdd14b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1332",
       text: "Together We Can Make a Difference",
     },
   ];
@@ -52,7 +52,7 @@ const Banner1 = () => {
             <p className="text-lg sm:text-xl md:text-2xl text-white mt-4 drop-shadow-md">
               Make a difference in your community
             </p>
-            <button className="mt-6 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition">
+            <button className="mt-6 px-6 py-3 bg-btn hover:bg-green-700 text-white font-semibold rounded-lg transition">
              <Link to={"/issues"}> Get Involved</Link>
             </button>
           </div>

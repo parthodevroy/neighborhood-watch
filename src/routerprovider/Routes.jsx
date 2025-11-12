@@ -13,11 +13,13 @@ import PrivateRoute from "../component/privateroutes/PrivateRoutes";
 import AddIssu from "../component/Pages/AddIssu";
 import UpdateProfile from "../component/authentication/UpdateProfile";
 import MyIssues from "../component/issues/MyIssues";
+import NotFound from "../component/root/NotFound";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component:Root,
+    errorElement:<NotFound></NotFound>,
     children:[
         {
             path:"/issues",

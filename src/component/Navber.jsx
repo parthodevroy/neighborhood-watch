@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { Authcontext } from "../authcontext/Authcontext";
 import { FaUserCircle } from "react-icons/fa";
@@ -7,16 +7,37 @@ const Navbar = () => {
   const { user, signout } = useContext(Authcontext);
   const [showMenu, setShowMenu] = useState(false);
 
+  // /andel logout
+
   const handleLogout = () => {
     signout();
     setShowMenu(false);
   };
-  const handelTheme = (checked) => {
-  document.documentElement.setAttribute(
-    "data-theme",
-    checked ? "dark" : "light"
-  );
+
+//   // handel them
+const handelthem = (checked) => {
+  const theme = checked ? "dark" : "light";
+  const html = document.querySelector("html");
+  html.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
 };
+console.log(user);
+
+
+useEffect(() => {
+  const savedTheme = localStorage.getItem("theme") || "light";
+  document.querySelector("html").setAttribute("data-theme", savedTheme);
+}, []);
+// const handelthem=(checked)=>{
+//   const html=document.querySelector("html")
+//   if (checked) {
+    
+//     html.setAttribute("data-theme", "dark")
+//   }else{
+//     html.setAttribute("data-theme", "light")
+//   }
+
+// }
 
 
   const linkItems = (
@@ -26,8 +47,8 @@ const Navbar = () => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "text-yellow-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all"
-              : "text-black hover:text-[#06b6d4] px-2 py-1 transition-all"
+              ? "text-black font-semibold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+              : "text-white font-semibold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
           }
         >
           Home
@@ -38,8 +59,8 @@ const Navbar = () => {
           to="/issues"
           className={({ isActive }) =>
             isActive
-              ? "text-yellow-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all"
-              : "text-black hover:text-[#06b6d4] px-2 py-1 transition-all"
+              ? "text-black font-semibold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+              : "text-white font-semibold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
           }
         >
          All Issues
@@ -53,8 +74,8 @@ const Navbar = () => {
               to="/mycontribution"
               className={({ isActive }) =>
                 isActive
-                  ? "text-yellow-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all"
-                  : "text-black hover:text-[#06b6d4] px-2 py-1 transition-all"
+                  ? "text-black font-semibold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+                  : "text-white font-semibold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
               }
             >
               My Contribution
@@ -65,8 +86,8 @@ const Navbar = () => {
               to="/addissues"
               className={({ isActive }) =>
                 isActive
-                  ? "text-yellow-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all"
-                  : "text-black hover:text-[#06b6d4] px-2 py-1 transition-all"
+                  ? "text-black font-semibold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+                  : "text-white font-semibold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
               }
             >
               Report Issues
@@ -78,8 +99,8 @@ const Navbar = () => {
         to="/myissues"
         className={({ isActive }) =>
           isActive
-            ? "text-yellow-500 font-bold border-b-2 border-red-500 px-2 py-1 transition-all"
-            : "text-black hover:text-[#06b6d4] px-2 py-1 transition-all"
+            ? "text-black font-semibold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+            : "text-white font-semibold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
         }
       >
         My Reported Issues
@@ -91,28 +112,43 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-main text-white shadow-md px-6 py-2 flex justify-between items-center">
-      {/* Logo */}
-      <Link to="/" className="text-2xl font-extrabold text-yellow-500 tracking-wide">
-        Neighborhood Watch
-      </Link>
+    <div className="navbar bg-navbar text-white shadow-md px-6 py-2 flex justify-between items-center">
 
-      {/* Center Links (Desktop) */}
+     {/* Logo */}
+<Link to="/" className="flex items-center gap-3">
+
+  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-yellow-500 shadow-lg">
+    <img
+      src="https://cdn.pixabay.com/photo/2018/08/05/10/58/work-3585353_1280.jpg"
+      alt="Logo"
+      className="w-full h-full object-cover"
+    />
+  </div>
+
+  
+  <span className="text-2xl font-extrabold text-color tracking-wide">
+    Neighborhood <br />  <span className="text-white">Watch</span>
+  </span>
+</Link>
+
+
+     
       <div className="hidden lg:flex">
         <ul className="menu menu-horizontal px-4 flex gap-4">{linkItems}</ul>
       </div>
 
-      {/* Right Section: User/Login */}
-      <div className="relative">
+
+     
+      <div className="relative text-color">
         {user ? (
           <div className="relative">
             <button
               onClick={() => setShowMenu(!showMenu)}
               className="w-12 h-12 rounded-full overflow-hidden border-2 border-[#06b6d4]"
             >
-              {user.photoURL ? (
+              {user.photoURL? (
                 <img
-                  src={user.photoURL}
+                  src={user?.photoURL}
                   alt="User"
                   className="w-full h-full object-cover"
                 />
@@ -122,9 +158,9 @@ const Navbar = () => {
             </button>
 
             {showMenu && (
-              <div className="absolute right-0 mt-2 bg-white text-black rounded-lg shadow-lg w-44 z-50">
+              <div className="absolute right-0 mt-2 bg-card text-color rounded-lg shadow-lg w-44 z-50">
                 <div className="px-4 py-2 border-b">
-                  <p className="font-semibold">{user.displayName || "User"}</p>
+                  <p className="font-semibold">{user?.displayName || "User"}</p>
                   <p className="text-sm text-gray-500">{user.email || "No email"}</p>
                 </div>
                 <ul>
@@ -132,7 +168,7 @@ const Navbar = () => {
                     <Link
                       to="/updateprofile"
                       onClick={() => setShowMenu(false)}
-                      className="block px-4 py-2 hover:bg-gray-100"
+                      className="block px-4 py-2  bg-hover"
                     >
                       Update Profile
                     </Link>
@@ -140,13 +176,14 @@ const Navbar = () => {
                   <li>
                     <button
                       onClick={handleLogout}
-                      className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                      className="w-full text-left px-4 py-2 bg-hover"
                     >
                       Log Out
                     </button>
                   </li>
-                  <li>
-                    <input onChange={(e)=>handelTheme(e.target.checked)} type="checkbox" defaultChecked className="toggle" />
+                  <li className="pl-2">
+                    <input  onChange={(e)=>handelthem(e.target.checked)} type="checkbox" className="toggle " />
+                    <span className="pl-1">Select Theme</span>
                   </li>
                 </ul>
               </div>
@@ -161,7 +198,7 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* Mobile Dropdown */}
+      {/* mobile Dropdown */}
       <div className="lg:hidden ">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost">

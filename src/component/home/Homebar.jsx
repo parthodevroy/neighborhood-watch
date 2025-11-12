@@ -34,6 +34,7 @@ import CategoryCards from './CategoryCards';
 import RecentIssues from './RecentIssues';
 import Stats from './Stats';
 import Banner1 from './Banner1';
+import HomeBanner from './HomeBanner';
 
 const Homebar = () => {
     return (
@@ -43,14 +44,15 @@ const Homebar = () => {
 
             <CategoryCards />
              <RecentIssues />
+              <Banner/>
+
+             <HomeBanner></HomeBanner>
              
-            
-           
-           
-            <Stats />
+             <Stats />
             <VolunteerCTA/>
 
-            <Banner/>
+           
+            
         </div>
     );
 };

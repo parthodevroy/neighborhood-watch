@@ -19,7 +19,7 @@ const Issues = () => {
   });
 
   return (
-    <div className="p-4">
+    <div className="p-4 ">
       <h1 className="text-3xl font-bold text-center mb-5">All Issues</h1>
 
      

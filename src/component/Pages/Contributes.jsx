@@ -170,16 +170,18 @@ const Contributes = () => {
       .then((data) => setContributions(data))
       .catch((err) => console.error("Failed to fetch contributions:", err));
   };
+// Fetch contributions when component mounts
+useEffect(() => {
+  if (user) fetchContributions();
+}, [id, user]);
 
-  useEffect(() => {
-    if (user) fetchContributions();
-  }, [id, user]);
 
   // Handle contribution 
   const handleContribute = (e) => {
     e.preventDefault();
     const amount = parseFloat(e.target.amount.value);
     const location = e.target.location.value;
+    const phone=e.target.phone.value
 
     if (amount < 50) {
       Swal.fire({
@@ -198,6 +200,7 @@ const Contributes = () => {
       userName: user.displayName,
       amount,
       location,
+      phone,
       date: new Date(),
     };
 
@@ -226,7 +229,7 @@ const Contributes = () => {
 
   return (
     <div>
-      <div className="max-w-lg mx-auto bg-white border-amber-400 pb-16 p-6 shadow-lg rounded-xl mt-10">
+      <div className="max-w-lg mx-auto bg-card border-amber-400 pb-16 p-6 shadow-lg rounded-xl mt-10">
       <img src={issue.image} alt={issue.title} className="rounded-lg mb-4" />
       <h2 className="text-2xl font-semibold mb-2">{issue.title}</h2>
       <p className="text-gray-600 mb-4">{issue.description}</p>
@@ -234,13 +237,13 @@ const Contributes = () => {
       {/* Contribution Form */}
       <form onSubmit={handleContribute} className="flex flex-col gap-4">
         <div className="flex flex-col">
-          <label className="font-semibold text-gray-700">Name</label>
+          <label className="font-semibold text-gray-600">Name</label>
           <input
             type="text"
             name="name"
             defaultValue={user?.displayName || ""}
             readOnly
-            className="input input-bordered w-full bg-gray-100"
+            className="input input-bordered w-full bg-card"
           />
         </div>
 
@@ -251,9 +254,21 @@ const Contributes = () => {
             name="email"
             defaultValue={user?.email || ""}
             readOnly
-            className="input input-bordered w-full bg-gray-100"
+            className="input input-bordered w-full bg-card"
           />
         </div>
+        {/* Phone Number */}
+<div className="flex flex-col">
+  <label className="font-semibold text-gray-700">Phone Number</label>
+  <input
+    type="tel"
+    name="phone"
+    placeholder="Enter your phone number"
+    required
+    className="input input-bordered w-full"
+  />
+</div>
+
 
         <div className="flex flex-col">
           <label className="font-semibold text-gray-700">Location</label>

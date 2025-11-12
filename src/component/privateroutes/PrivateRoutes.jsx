@@ -1,26 +1,22 @@
-import React, { use } from 'react';
+import React, { useContext } from "react";
+import { Navigate, useLocation } from "react-router";
+import { Authcontext } from "../../authcontext/Authcontext";
+import Loading from "../Loading";
 
-import { Navigate, useLocation } from 'react-router';
-import { GoogleAuthProvider } from 'firebase/auth';
-import { Authcontext } from '../../authcontext/Authcontext';
+const PrivateRoutes = ({ children }) => {
+  const { user, loading } = useContext(Authcontext);
+  const location = useLocation();
+
+  if (loading) {
+    return <div className="text-center py-10"><Loading></Loading></div>;
+  }
+
+  if (user) {
+    return children;
+  }
 
 
-// const googleprovider=new GoogleAuthProvider();
-
-const PrivateRoutes = ({children}) => {
-    const{user,loading}=use(Authcontext)
-
-    const location=useLocation()
-    console.log(location);
-    if (loading) return <div className="text-center py-10">Loading...</div>;
-    
-    if (user) {
-        return children;
-        
-    }
-    
-        return <Navigate state={location?.pathname} to="/login"></Navigate>
-    
+  return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 export default PrivateRoutes;

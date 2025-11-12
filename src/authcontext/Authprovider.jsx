@@ -5,7 +5,8 @@ import {
   signInWithEmailAndPassword, 
   signInWithPopup, 
   signOut, 
-  getIdToken 
+  getIdToken, 
+  
 } from "firebase/auth";
 
 import { auth } from "../component/authentication/firebase.init";
@@ -22,6 +23,7 @@ const Authprovider = ({ children }) => {
     return createUserWithEmailAndPassword(auth, gmail, password);
   };
 
+
   //  Login
   const userlogin = (gmail, password) => {
     return signInWithEmailAndPassword(auth, gmail, password);
@@ -36,20 +38,20 @@ const Authprovider = ({ children }) => {
   const signout = () => {
     return signOut(auth);
   };
+  // 🔹 Forgot Password
+  // const forgotPassword = (email) => {
+  //   return sendPasswordResetEmail(auth, email);
+  // };
 
   //  user set
-  useEffect(() => {
+   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         try {
-        
-          const token = await getIdToken(currentUser);
-          setUser({ 
-            ...currentUser, 
-            accessToken: token  
-          });
+          await currentUser.reload(); 
+          setUser(currentUser); 
         } catch (error) {
-          console.error("Error fetching token:", error);
+          console.error("Error reloading user:", error);
         }
       } else {
         setUser(null);
@@ -60,13 +62,16 @@ const Authprovider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+
   const userinfo = {
     userregister,
     userlogin,
     user,
+    setUser,
     signout,
     loading,
     googlelogin,
+    
   };
 
   return (

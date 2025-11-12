@@ -15,36 +15,58 @@ const Register = () => {
 
     const [succcces,setSuccess]=useState(false)
 
+const handelregister = (e) => {
+  e.preventDefault();
 
-  const handelregister = (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const photo = e.target.photo.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+  const name = e.target.name.value;
+  const photo = e.target.photo.value;
+  const email = e.target.email.value;
+  const password = e.target.password.value;
 
-    setError("");
-    setSuccess(false);
+  setError("");
+  setSuccess(false);
 
-    userregister(email, password)
-      .then(result => {
-        const createdUser = result.user;
+  
+  const uppercase = /[A-Z]/.test(password);
+  const lowercase = /[a-z]/.test(password);
+  const minLength = password.length >= 6;
 
-        updateProfile(createdUser, {
-          displayName: name,
-          photoURL: photo
-        })
-          .then(() => {
-            console.log("Profile updated:", createdUser);
-            setSuccess(true);
-            e.target.reset();
-          })
-          .catch(err => {
-            setError(err.message);
-          });
+  if (!uppercase) {
+    setError("Password must contain at least one uppercase letter (A-Z).");
+    return;
+  }
+
+  if (!lowercase) {
+    setError("Password must contain at least one lowercase letter (a-z).");
+    return;
+  }
+
+  if (!minLength) {
+    setError("Password must be at least 6 characters long.");
+    return;
+  }
+
+ 
+  userregister(email, password)
+    .then(result => {
+      const createdUser = result.user;
+
+      updateProfile(createdUser, {
+        displayName: name,
+        photoURL: photo,
       })
-      .catch(err => setError(err.message));
-  };
+        .then(() => {
+          console.log("Profile updated:", createdUser);
+          setSuccess(true);
+          e.target.reset();
+        })
+        .catch(err => {
+          setError(err.message);
+        });
+    })
+    .catch(err => setError(err.message));
+};
+
   return (
     <div className="hero bg-green-50 min-h-screen flex items-center justify-center">
       <div className="card bg-card w-full max-w-md shadow-2xl rounded-2xl p-6">

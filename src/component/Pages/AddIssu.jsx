@@ -39,7 +39,7 @@ const AddIssu = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 bg-white p-6 rounded-xl shadow-lg">
+    <div className="max-w-md mx-auto mt-10 bg-card p-6 rounded-xl shadow-lg">
       <h2 className="text-2xl font-bold text-center mb-6">Report New Issue</h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         <input name="title" placeholder="Issue Title" className="input input-bordered w-full" required />
@@ -53,6 +53,12 @@ const AddIssu = () => {
         <input name="location" placeholder="Location" className="input input-bordered w-full" required />
         <textarea name="description" placeholder="Description" className="input input-bordered w-full" required />
         <input name="image" placeholder="Image URL" className="input input-bordered w-full" required />
+        <input
+          name="email"
+          value={user?.email || ""}
+          readOnly
+          className="input input-bordered w-full bg-card cursor-not-allowed"
+        />
         <input name="amount" placeholder="Suggested Fix Budget" type="number" className="input input-bordered w-full" required />
         <button type="submit" className="btn bg-btn text-white mt-4">Report Issue</button>
       </form>

@@ -3,6 +3,7 @@ import { Authcontext } from "../../authcontext/Authcontext";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { toast, Toaster } from "react-hot-toast";
+import Loading from "../Loading";
 
 const MyContributes = () => {
   const { user } = useContext(Authcontext);
@@ -128,7 +129,7 @@ const MyContributes = () => {
     }
   };
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
+  if (loading) return <p className="text-center mt-10"><Loading></Loading></p>;
 
   return (
     <div className="p-6">
@@ -147,37 +148,37 @@ const MyContributes = () => {
       </div>
 
       {contributions.length === 0 ? (
-        <p className="text-center text-gray-500">No contributions yet.</p>
+        <p className="text-center text-color">No contributions yet.</p>
       ) : (
         <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
           {contributions.map((c) => (
             <div
               key={c._id}
-              className="card bg-white shadow-lg rounded-xl overflow-hidden"
+              className="card bg-card shadow-lg rounded-xl overflow-hidden"
             >
               <figure>
                 <img
                   src={c.issueImage}
                   alt={c.issueTitle}
-                  className="h-40 w-full object-cover"
+                  className="h-40 w-full text-color object-cover"
                 />
               </figure>
               <div className="card-body">
                 <h3 className="font-semibold text-lg">{c.issueTitle}</h3>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-color">
                   Amount: <span className="font-bold">${c.amount}</span>
                 </p>
-                <p className="text-sm text-gray-600">
+                <p className="text-sm text-color">
                   Location: <span className="font-bold">{c.location}</span>
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-color">
                   Date: {new Date(c.date).toLocaleDateString()}
                 </p>
 
                 <div className="card-actions justify-between mt-4">
                   <button
                     onClick={() => setEditing(c)}
-                    className="btn btn-sm bg-btn text-white"
+                    className="btn btn-sm bg-btn bg-card"
                   >
                     Update
                   </button>
@@ -197,7 +198,7 @@ const MyContributes = () => {
       {/*  Update M*/}
       {editing && (
         <dialog id="edit_modal" className="modal modal-open">
-          <div className="modal-box bg-white">
+          <div className="modal-box bg-card">
             <h3 className="font-bold text-lg mb-3">Update Contribution</h3>
 
             <form onSubmit={handleUpdate}>
@@ -238,11 +239,11 @@ const MyContributes = () => {
       {/* Delete */}
       {deleting && (
         <dialog id="delete_modal" className="modal modal-open">
-          <div className="modal-box bg-white">
+          <div className="modal-box bg-card">
             <h3 className="font-bold text-lg text-red-600">
               Are you sure you want to delete?
             </h3>
-            <p className="py-3 text-gray-700">
+            <p className="py-3 text-color">
               Issue: <span className="font-semibold">{deleting.issueTitle}</span>
             </p>
 

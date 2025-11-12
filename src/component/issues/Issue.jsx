@@ -5,17 +5,17 @@ const Issue = ({ issu }) => {
   const { title, category, location, description, image, status, amount, _id } = issu;
 
   return (
-    <div className="card bg-card shadow-lg rounded-2xl overflow-hidden flex flex-col h-full">
+    <div className="card bg-card shadow-lg  mt-4 rounded-2xl overflow-hidden flex flex-col h-full">
      
-      <img src={image} alt={title} className="h-48 w-full object-cover" />
+      <img src={image} alt={title} className="h-48 w-full transition-transform duration-900 hover:scale-105 hover:shadow-2xl object-cover" />
 
       
       <div className="p-4 flex flex-col flex-grow">
-        <h2 className="text-xl text-purple-600 font-semibold mb-1">{title}</h2>
+        <h2 className="text-xl text-collor font-semibold mb-1">{title}</h2>
         <p className="text-sm text-gray-500 mb-2">
           <span className="text-lg font-semibold text-red-600">{category}</span> • {location}
         </p>
-        <p className="text-gray-700 flex-grow">{description}</p>
+        <p className="text-collor flex-grow">{description}</p>
       </div>
 
      

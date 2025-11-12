@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Authcontext } from "../../authcontext/Authcontext";
 import Swal from "sweetalert2";
+import Loading from "../Loading";
 
 const MyIssues = () => {
   const { user } = useContext(Authcontext);
@@ -151,17 +152,17 @@ const MyIssues = () => {
     }
   };
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
+  if (loading) return <p className="text-center mt-10"><Loading></Loading></p>;
   if (!user) return <p className="text-center mt-10">Please log in to view your issues.</p>;
 
   return (
     <div className="max-w-6xl mx-auto py-10 px-4">
-      <h2 className="text-3xl font-bold text-center mb-8 text-[#06b6d4]">
+      <h2 className="text-3xl font-bold text-center mb-8 text-color">
         My Submitted Issues ({issues.length})
       </h2>
 
       {issues.length === 0 ? (
-        <p className="text-center text-gray-500 text-lg">
+        <p className="text-center text-white text-lg">
           You haven’t submitted any issues yet.
         </p>
       ) : (
@@ -169,7 +170,7 @@ const MyIssues = () => {
           {issues.map((issue) => (
             <div
               key={issue._id}
-              className="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300"
+              className="bg-card shadow-lg rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300"
             >
               <img src={issue.image} alt={issue.title} className="h-48 w-full object-cover" />
               <div className="p-4">
