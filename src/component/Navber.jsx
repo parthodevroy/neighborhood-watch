@@ -47,8 +47,8 @@ useEffect(() => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "text-black font-semibold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-              : "text-white font-semibold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+              ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+              : "text-white font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
           }
         >
           Home
@@ -59,8 +59,8 @@ useEffect(() => {
           to="/issues"
           className={({ isActive }) =>
             isActive
-              ? "text-black font-semibold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-              : "text-white font-semibold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+              ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+              : "text-white font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
           }
         >
          All Issues
@@ -74,8 +74,8 @@ useEffect(() => {
               to="/mycontribution"
               className={({ isActive }) =>
                 isActive
-                  ? "text-black font-semibold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-                  : "text-white font-semibold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+                  ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+                  : "text-white font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
               }
             >
               My Contribution
@@ -86,8 +86,8 @@ useEffect(() => {
               to="/addissues"
               className={({ isActive }) =>
                 isActive
-                  ? "text-black font-semibold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-                  : "text-white font-semibold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+                  ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+                  : "text-white font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
               }
             >
               Report Issues
@@ -99,8 +99,8 @@ useEffect(() => {
         to="/myissues"
         className={({ isActive }) =>
           isActive
-            ? "text-black font-semibold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-            : "text-white font-semibold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+            ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+            : "text-white font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
         }
       >
         My Reported Issues
@@ -200,7 +200,7 @@ useEffect(() => {
 
       {/* mobile Dropdown */}
       <div className="lg:hidden ">
-        <div className="dropdown">
+        <div className="dropdown relative">
           <label tabIndex={0} className="btn btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -214,7 +214,7 @@ useEffect(() => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content text-black bg-card rounded-box z-10 mt-3 w-52 p-2 shadow-lg"
+            className="menu menu-sm dropdown-content text-black bg-card rounded-box z-10 right-0 mt-3 w-52 p-2 shadow-lg"
           >
             {linkItems}
           </ul>

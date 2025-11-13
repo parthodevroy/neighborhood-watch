@@ -30,7 +30,7 @@ const Banner1 = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 4000); // 4 seconds per slide
+    }, 3000); 
 
     return () => clearInterval(interval);
   }, [slides.length]);

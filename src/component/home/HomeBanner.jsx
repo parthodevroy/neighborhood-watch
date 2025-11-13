@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-// HomeBanner component for Neighborhood Watch
-// - Uses Tailwind CSS + DaisyUI utility classes
-// - Shows a row of info cards (text) and a contributor strip below
-// - Rotates/highlights one "recent/high contributor" at a time
-// - No hover-only color changes; respects theme variables (see user's global CSS)
-
 export default function HomeBanner() {
   const cards = [
     {
@@ -30,21 +24,21 @@ export default function HomeBanner() {
     { id: 5, name: "Anika R.", role: "Recent Contributor", img: null },
   ];
 
-  // index of highlighted contributor
+  
   const [highlightIndex, setHighlightIndex] = useState(0);
 
   useEffect(() => {
     const id = setInterval(() => {
       setHighlightIndex((i) => (i + 1) % contributors.length);
-    }, 3000); // change every 3s
+    }, 3000);
     return () => clearInterval(id);
   }, [contributors.length]);
 
   return (
     <section className="w-full max-w-7xl mx-auto px-4 py-8">
-      {/* Hero + Cards */}
+     
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-        {/* left: hero text */}
+        
         <div className="col-span-1 lg:col-span-1 bg-card p-6 rounded-xl">
           <h1 className="text-2xl font-bold mb-2">Neighborhood Watch</h1>
           <p className="text-sm opacity-90 mb-4">
@@ -56,7 +50,7 @@ export default function HomeBanner() {
           </div>
         </div>
 
-        {/* right: text cards */}
+       
         <div className="col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
           {cards.map((c) => (
             <div
@@ -70,7 +64,7 @@ export default function HomeBanner() {
         </div>
       </div>
 
-      {/* Contributors strip */}
+     
       <div className="bg-card p-4 rounded-xl">
         <h4 className="font-semibold mb-3">Contributed People</h4>
         <div className="flex items-center gap-4 overflow-x-auto py-2">
@@ -83,7 +77,7 @@ export default function HomeBanner() {
                   highlighted ? "ring-2 ring-offset-2" : ""
                 }`}
               >
-                {/* Avatar: if img available use img, otherwise initials */}
+               
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-sky-400 to-indigo-600 flex items-center justify-center text-white font-semibold">
                   {person.name
                     .split(" ")
@@ -102,7 +96,7 @@ export default function HomeBanner() {
                     )}
                   </div>
                   <div className="text-xs opacity-80">{person.role}</div>
-                  {/* small description or contribution count */}
+                 
                   <div className="text-xs opacity-70 mt-1">Contributions: {10 + person.id * 3}</div>
                 </div>
               </div>

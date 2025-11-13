@@ -7,7 +7,7 @@ const RecentIssues = () => {
     useEffect(() => {
         fetch("https://neighborhood-watch-server.vercel.app/issues")
             .then(res => res.json())
-            .then(data => setIssues(data.slice(0, 6))) // recent 6 issues
+            .then(data => setIssues(data.slice(0, 6))) 
             .catch(err => console.error(err));
     }, []);
 
