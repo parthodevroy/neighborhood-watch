@@ -150,7 +150,7 @@ const MyContributes = () => {
       {contributions.length === 0 ? (
         <p className="text-center text-color">No contributions yet.</p>
       ) : (
-        <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
+        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
           {contributions.map((c) => (
             <div
               key={c._id}

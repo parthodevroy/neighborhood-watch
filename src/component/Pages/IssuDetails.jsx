@@ -2,6 +2,7 @@
 import React, { use, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { Authcontext } from "../../authcontext/Authcontext";
+import Loading from "../Loading";
 
 const IssuDetails = () => {
 
@@ -12,11 +13,13 @@ const IssuDetails = () => {
 
 
   const navigate = useNavigate();
+  
 
 const handleContribute = () => {
   if (user) {
     
     navigate(`/contributes/${id}`);
+   
     
   } else {
     
@@ -40,7 +43,7 @@ useEffect(() => {
           `https://neighborhood-watch-server.vercel.app/issues/${id}`,
           {
             headers: {
-              // authorization: `Bearer ${user.accessToken}`
+              authorization: `Bearer ${user.accessToken}`
              
             },
            
@@ -65,16 +68,16 @@ useEffect(() => {
     
   }, [id, user]);
 
-  // ✅ Loading state
+  //  Loading state
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen text-lg text-gray-600">
-        Loading issue details...
+      <div className="flex justify-center items-center h-screen text-lg text-color">
+        <Loading></Loading>
       </div>
     );
   }
 
-  // ✅ No issue found state
+  //  No issue found state
   if (!issue) {
     return (
       <div className="flex justify-center items-center h-screen text-lg text-red-600">
@@ -152,7 +155,7 @@ useEffect(() => {
             <button onClick={handleContribute} className="btn hover-glow btn-success bg-btn rounded-2xl text-xls w-full sm:w-auto">
               💰 Contribute to Clean-Up
             </button>
-            <button onClick={handleContribute} className="btn hover-glow btn-success bg-btn rounded-2xl text-xls w-full sm:w-auto">
+            {/* <button onClick={handleContribute} className="btn hover-glow btn-success bg-btn rounded-2xl text-xls w-full sm:w-auto">
              💰 Pay
             </button>
             <button  className="btn btn-success hover-glow bg-btn rounded-2xl text-xls w-full sm:w-auto">
@@ -160,7 +163,7 @@ useEffect(() => {
             </button>
             <button  className="btn btn-success hover-glow bg-btn rounded-2xl text-xls w-full sm:w-auto">
                <Link to={"/mycontribution"}>Edid</Link>
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

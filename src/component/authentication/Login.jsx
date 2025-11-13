@@ -22,7 +22,7 @@ const Login = () => {
 
     userlogin(email, password)
       .then(result => {
-        console.log("User:", result.user);
+        // console.log("User:", result.user);
         setSuccess(true);
         navigate(from, { replace: true });
         setUser(result.user)
@@ -30,7 +30,7 @@ const Login = () => {
         e.target.reset();
       })
       .catch(err => {
-        console.error(err);
+        // console.error(err);
         setError(err.message);
       });
   };
@@ -41,9 +41,11 @@ const Login = () => {
   const handleGoogleLogin = () => {
   googlelogin()
     .then(result => {
-      console.log("Google user:", result.user);
+     
       setSuccess(true);
-      navigate(from); })
+      setUser(result.user)
+      navigate(from, { replace: true }); })
+      
     .catch(err => setError(err.message));
 };
 

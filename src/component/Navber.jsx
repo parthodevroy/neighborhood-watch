@@ -52,7 +52,7 @@ useEffect(() => {
           className={({ isActive }) =>
             isActive
               ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-              : "text-white font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+              : "text-color font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
           }
         >
           Home
@@ -64,7 +64,7 @@ useEffect(() => {
           className={({ isActive }) =>
             isActive
               ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-              : "text-white font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+              : "text-color font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
           }
         >
          All Issues
@@ -79,7 +79,7 @@ useEffect(() => {
               className={({ isActive }) =>
                 isActive
                   ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-                  : "text-white font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+                  : "text-color font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
               }
             >
               My Contribution
@@ -91,7 +91,7 @@ useEffect(() => {
               className={({ isActive }) =>
                 isActive
                   ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-                  : "text-white font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+                  : "text-color font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
               }
             >
               Report Issues
@@ -104,7 +104,7 @@ useEffect(() => {
         className={({ isActive }) =>
           isActive
             ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-            : "text-white font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+            : "text-color font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
         }
       >
         My Reported Issues

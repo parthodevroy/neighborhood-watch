@@ -14,6 +14,7 @@ import AddIssu from "../component/Pages/AddIssu";
 import UpdateProfile from "../component/authentication/UpdateProfile";
 import MyIssues from "../component/issues/MyIssues";
 import NotFound from "../component/root/NotFound";
+import PrivateRoutes from "../component/privateroutes/PrivateRoutes";
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +31,7 @@ export const router = createBrowserRouter([
         {
           path:"/issues/:id",
           element:
-            <IssuDetails></IssuDetails>
+           <PrivateRoutes> <IssuDetails></IssuDetails></PrivateRoutes>
          
         },
         {
