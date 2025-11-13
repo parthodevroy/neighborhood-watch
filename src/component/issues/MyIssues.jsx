@@ -8,7 +8,7 @@ const MyIssues = () => {
   const [issues, setIssues] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch user issues
+  
   useEffect(() => {
     if (!user) return;
     if (!user.email || !user.accessToken) return;

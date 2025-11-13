@@ -10,18 +10,18 @@ const Root = () => {
   return (
     <div className="min-h-screen bg-main text-main transition-all duration-500">
         
-      {/* Navbar */}
+      
       <header>
        <div> <Navber /></div>
         {location.pathname === "/" && <Homebar />}
       </header>
 
-      {/* Page Content */}
+      
       <main className="p-2">
         <Outlet />
       </main>
 
-      {/* Footer */}
+      
       <footer>
         <Footer />
       </footer>

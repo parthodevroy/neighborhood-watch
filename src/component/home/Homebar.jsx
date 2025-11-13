@@ -39,7 +39,7 @@ import HomeBanner from './HomeBanner';
 const Homebar = () => {
     return (
         <div>
-            {/* <Home/> */}
+            
             <Banner1/>
 
             <CategoryCards />

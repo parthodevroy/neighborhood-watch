@@ -39,7 +39,7 @@ const MyContributes = () => {
   }, [user]);
 console.log(contributions);
 
-  // Delete contribution
+  // Delete 
   const handleConfirmDelete = async () => {
     if (!deleting || !user?.accessToken) return;
 
@@ -69,7 +69,7 @@ console.log(contributions);
     setDeleting(null);
   };
 
-  // Download PDF
+  // Download 
   const downloadPDF = () => {
     const doc = new jsPDF();
     doc.setFontSize(18);
@@ -196,7 +196,7 @@ console.log(contributions);
         </div>
       )}
 
-      {/*  Update M*/}
+      {/*  Update */}
       {editing && (
         <dialog id="edit_modal" className="modal modal-open">
           <div className="modal-box bg-card">

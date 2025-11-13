@@ -16,7 +16,7 @@ const Login = () => {
   const [success, setSuccess] = useState(false);
     const [showPassword, setShowPassword] = useState(false); 
 
-  // Email/password login
+  // Email login
   const handleLogin = (e) => {
     e.preventDefault();
     const email = e.target.email.value;

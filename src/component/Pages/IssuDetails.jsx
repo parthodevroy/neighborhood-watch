@@ -1,4 +1,4 @@
-// src/component/issues/SeeDetails.jsx
+
 import React, { use, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import { Authcontext } from "../../authcontext/Authcontext";
@@ -81,7 +81,7 @@ useEffect(() => {
   if (!issue) {
     return (
       <div className="flex justify-center items-center h-screen text-lg text-red-600">
-        Issue not found 😕
+        Issue not found 
       </div>
     );
   }
@@ -104,10 +104,10 @@ useEffect(() => {
   return (
     <div className="max-w-5xl  mx-auto px-5 py-10">
       <div className="bg-card  rounded-2xl shadow-md overflow-hidden">
-        {/* Image Section */}
+       
         <img src={image} alt={title} className="w-full h-80 object-cover" />
 
-        {/* Details Section */}
+        {/* Details */}
         <div className="p-6 space-y-4">
           <h2 className="text-3xl font-bold text-color">{title}</h2>
           <p className="text-sm text-color">
@@ -150,13 +150,13 @@ useEffect(() => {
             </p>
           </div>
 
-          {/* Action Button */}
+          {/*  Button */}
           <div className="mt-6  flex justify-between">
             <button onClick={handleContribute} className="btn hover-glow btn-success bg-btn rounded-2xl text-xls w-full sm:w-auto">
-              💰 Contribute to Clean-Up
+               Contribute to Clean-Up
             </button>
             {/* <button onClick={handleContribute} className="btn hover-glow btn-success bg-btn rounded-2xl text-xls w-full sm:w-auto">
-             💰 Pay
+              Pay
             </button>
             <button  className="btn btn-success hover-glow bg-btn rounded-2xl text-xls w-full sm:w-auto">
               <Link to={"/addissues"}> Report Issues</Link>

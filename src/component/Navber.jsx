@@ -202,7 +202,7 @@ useEffect(() => {
         )}
       </div>
 
-      {/* mobile Dropdown */}
+      {/*  Dropdown */}
       <div className="lg:hidden ">
         <div className="dropdown relative">
           <label tabIndex={0} className="btn btn-ghost">

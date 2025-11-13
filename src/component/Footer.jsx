@@ -15,7 +15,7 @@ const Footer = () => {
           </p>
         </div>
 
-        {/*  Links */}
+        
         <div>
           <h3 className="font-semibold mb-3">Quick Links</h3>
           <ul className="space-y-2 text-gray-300">
@@ -26,7 +26,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Contact */}
+        
         <div>
           <h3 className="font-semibold mb-3">Contact Us</h3>
           <p className="text-gray-300 text-sm">123 Neighborhood St.</p>
@@ -35,7 +35,7 @@ const Footer = () => {
           <p className="text-gray-300 text-sm">Phone: +880 1234 567890</p>
         </div>
 
-        {/* Social */}
+        
         <div>
           <h3 className="font-semibold mb-3">Follow Us</h3>
           <div className="flex gap-4 text-gray-300">
@@ -48,7 +48,7 @@ const Footer = () => {
 
       </div>
 
-      {/* Bottom */}
+      
       <div className="mt-10 border-t border-gray-700 pt-4 text-center text-gray-400 text-sm">
         &copy; {new Date().getFullYear()} Neighborhood Watch. All rights reserved.
       </div>
