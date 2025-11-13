@@ -109,7 +109,7 @@ const MyIssues = () => {
     }
   };
 
-  // Status change
+  // Status 
   const handleStatusChange = async (issue) => {
     const { value: newStatus } = await Swal.fire({
       title: "Change Status",

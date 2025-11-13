@@ -37,7 +37,7 @@ const Authprovider = ({ children }) => {
   const signout = () => {
     return signOut(auth);
   };
-  // 🔹 Forgot Password
+  //  Forgot Password
   // const forgotPassword = (email) => {
   //   return sendPasswordResetEmail(auth, email);
   // };
