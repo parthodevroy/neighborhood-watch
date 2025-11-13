@@ -37,6 +37,7 @@ const MyContributes = () => {
         });
     }
   }, [user]);
+console.log(contributions);
 
   // Delete contribution
   const handleConfirmDelete = async () => {
