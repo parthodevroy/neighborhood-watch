@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router';
 
 import { Authcontext } from '../../authcontext/Authcontext';
 import Swal from 'sweetalert2';
+import { BiSolidHide, BiSolidShow } from 'react-icons/bi';
 
 const Login = () => {
   const { userlogin, googlelogin, setUser } = use(Authcontext);
@@ -13,6 +14,7 @@ const Login = () => {
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+    const [showPassword, setShowPassword] = useState(false); 
 
   // Email/password login
   const handleLogin = (e) => {
@@ -83,9 +85,22 @@ const Login = () => {
             <input type="email" name='email' className="input input-bordered w-full" placeholder="Email" />
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col relative">
             <label className="label font-semibold text-gray-700">Password</label>
-            <input type="password" name='password' className="input input-bordered w-full" placeholder="Password" />
+            <input
+              type={showPassword ? "text" : "password"} 
+              name='password'
+              className="input input-bordered w-full"
+              placeholder="Password"
+            />
+         
+            <button
+              type="button"
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute right-3 top-[35px] text-color text-sm"
+            >
+              {showPassword ? <BiSolidShow></BiSolidShow> :<BiSolidHide/>}
+            </button>
           </div>
           {/* <div 
             className="text-blue-500 cursor-pointer underline text-sm"

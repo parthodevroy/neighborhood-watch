@@ -6,12 +6,14 @@ import { use } from 'react';
 import { Authcontext } from '../../authcontext/Authcontext';
 import { Link, useNavigate, } from 'react-router';
 import { updateProfile } from 'firebase/auth';
+import { BiSolidHide, BiSolidShow } from 'react-icons/bi';
 
 const Register = () => {
     const { userregister, setUser}=use(Authcontext)
     
     
     const [error,setError]=useState("")
+     const [showPassword, setShowPassword] = useState(false); 
 
     const [succcces,setSuccess]=useState(false)
     const navigate=useNavigate()
@@ -89,11 +91,28 @@ const handelregister = (e) => {
             <label className="label font-semibold text-gray-700">Email</label>
             <input type="email" name='email' className="input input-bordered w-full" placeholder="Email" />
           </div>
-
+{/* 
           <div className="flex flex-col">
             <label className="label font-semibold text-gray-700">Password</label>
             <input type="password" name='password' className="input input-bordered w-full" placeholder="Password" />
-          </div>
+          </div> */}
+           <div className="flex flex-col relative">
+                      <label className="label font-semibold text-color">Password</label>
+                      <input
+                        type={showPassword ? "text" : "password"} 
+                        name='password'
+                        className="input input-bordered w-full"
+                        placeholder="Password"
+                      />
+                   
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 top-[35px] text-color text-sm"
+                      >
+                        {showPassword ? <BiSolidShow></BiSolidShow> :<BiSolidHide/>}
+                      </button>
+                    </div>
 
           <button type="submit" className="btn bg-btn text-white mt-4 hover-glow">
             Register Now
