@@ -6,6 +6,7 @@ import { FaUserCircle } from "react-icons/fa";
 const Navbar = () => {
   const { user, signout } = useContext(Authcontext);
   const [showMenu, setShowMenu] = useState(false);
+  const [dark, setDark]=useState(false)
 
   // /andel logout
 
@@ -20,12 +21,15 @@ const handelthem = (checked) => {
   const html = document.querySelector("html");
   html.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
+  setDark(checked)
 };
 console.log(user);
 
 
 useEffect(() => {
   const savedTheme = localStorage.getItem("theme") || "light";
+  const dark=savedTheme==="dark";
+  setDark(dark)
   document.querySelector("html").setAttribute("data-theme", savedTheme);
 }, []);
 // const handelthem=(checked)=>{
@@ -140,7 +144,7 @@ useEffect(() => {
 
      
       <div className="relative text-color">
-        {user ? (
+        {user ?.email? (
           <div className="relative">
             <button
               onClick={() => setShowMenu(!showMenu)}
@@ -182,7 +186,7 @@ useEffect(() => {
                     </button>
                   </li>
                   <li className="pl-2">
-                    <input  onChange={(e)=>handelthem(e.target.checked)} type="checkbox" className="toggle " />
+                    <input  onChange={(e)=>handelthem(e.target.checked)} checked={dark} type="checkbox" className="toggle " />
                     <span className="pl-1">Select Theme</span>
                   </li>
                 </ul>

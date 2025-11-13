@@ -6,7 +6,7 @@ import { Authcontext } from '../../authcontext/Authcontext';
 import Swal from 'sweetalert2';
 
 const Login = () => {
-  const { userlogin, googlelogin } = use(Authcontext);
+  const { userlogin, googlelogin, setUser } = use(Authcontext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from || "/issues";
@@ -25,6 +25,7 @@ const Login = () => {
         console.log("User:", result.user);
         setSuccess(true);
         navigate(from, { replace: true });
+        setUser(result.user)
         
         e.target.reset();
       })

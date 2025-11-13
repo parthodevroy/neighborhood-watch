@@ -4,16 +4,17 @@ import React, { useState } from 'react';
 
 import { use } from 'react';
 import { Authcontext } from '../../authcontext/Authcontext';
-import { Link, } from 'react-router';
+import { Link, useNavigate, } from 'react-router';
 import { updateProfile } from 'firebase/auth';
 
 const Register = () => {
-    const { userregister}=use(Authcontext)
+    const { userregister, setUser}=use(Authcontext)
     
     
     const [error,setError]=useState("")
 
     const [succcces,setSuccess]=useState(false)
+    const navigate=useNavigate()
 
 const handelregister = (e) => {
   e.preventDefault();
@@ -59,6 +60,8 @@ const handelregister = (e) => {
           console.log("Profile updated:", createdUser);
           setSuccess(true);
           e.target.reset();
+           setUser(null)
+          navigate("/login")
         })
         .catch(err => {
           setError(err.message);

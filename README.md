@@ -1,16 +1,12 @@
-# React + Vite
+#  Neighborhood Watch
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Site URL
 
-Currently, two official plugins are available:
+##  Features
+The core features of the Neighborhood Watch platform include:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* **Instance Alart System:** Users can quickly post urgent or safety-related issues in their area, and these messages are immediately disseminated to local residents.
+* **Map-Based Reporting:** An interactive map feature allowing users to pinpoint and log the location of suspicious activity or incidents.
+* **Community Group Communication:** Residents of a specific area can communicate, discuss, and exchange safety information privately or in small groups.
+* **Local Authority Integration:** Provides easy access to contact information and hotlines for local police or relevant neighborhood authorities.
+* **Anonymous Reporting Option:** A secure option to submit sensitive information or reports without having to disclose the user's identity.
