@@ -8,12 +8,14 @@
 
 📖 About the Project
 
-This project is inspired by the "Neighborhood World" and "15-20 Minute City" concepts in urban planning. Its primary goal is to leverage technology to solve local problems, thereby cultivating a safer and more self-sufficient community environment.Core Objectives:Community Safety: Allows residents to instantly report any area issues (e.g., damaged infrastructure, waste accumulation, lack of lighting, or suspicious activity).Rapid Resolution: Facilitates swift problem identification and management by local authorities or volunteers.Civic Engagement: Encourages citizens to actively participate in the continuous improvement of their neighborhood.
+This project is inspired by the "Neighborhood World" and "15-20 Minute City" concepts in urban planning. Its primary goal is to leverage technology to solve local problems, thereby cultivating a safer and more self-sufficient community environment.Core Objectives:Community Safety: Allows residents to instantly report any area issues 
+(e.g.,damaged infrastructure, waste accumulation, lack of lighting, or suspicious activity).Rapid Resolution: Facilitates swift problem identification and management by local authorities or volunteers.Civic Engagement: Encourages citizens to actively participate in the continuous improvement of their neighborhood.
 
 
 📊 Project Overview
 
-Technology Stack: Full-Stack MERN Application (MongoDB, Express.js, React, Node.js).Goal: To build a highly responsive, scalable, and user-centric platform that efficiently manages community-submitted reports.Focus Areas:Geo-Location: Accurate identification and mapping of the location of reported issues.RESTful APIs: Designing robust APIs to handle the submission, viewing, and resolution workflow of community reports.
+Technology Stack: Full-Stack MERN Application (MongoDB, Express.js, React, Node.js).Goal: To build a highly responsive, scalable, and user-centric platform that efficiently manages community-submitted reports.Focus Areas:Geo-Location:
+ Accurate identification and mapping of the location of reported issues.RESTful APIs: Designing robust APIs to handle the submission, viewing, and resolution workflow of community reports.
 
 ✨ Key Features
 
@@ -43,6 +45,6 @@ npm run dev
 Contact 📬
 🔗 Live URL: https://eloquent-taffy-e83a6d.netlify.app/
 
-Parthodev Roy - - rparthi787@s@gmail.com
+Parthodev Roy - - rpartho787@gmail.com
 
 Project Link: https://github.com/parthodevroy/neighborhood-watch
