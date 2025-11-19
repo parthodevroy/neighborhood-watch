@@ -122,5 +122,5 @@ your-project/
 
 
 **Live URL:** [Live Site](https://eloquent-taffy-e83a6d.netlify.app/)
-**Email:** [Parthodev Roy](rpartho787@gmail.com)
+**Email:** [Partho Roy](rpartho787@gmail.com)
 **Project Link:** [Project](https://github.com/parthodevroy/neighborhood-watch)
