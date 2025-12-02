@@ -12,8 +12,8 @@
   --text-body: #0f172a;
   --bg-gradient: linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 50%, #FFFFFF 100%);
   --btn-gradient: linear-gradient(135deg, #7C7BE6 0%, #7C7BE6 100%);
-  --card-gradient: linear-gradient(145deg, #FDEEED 0%, #FDEEED 100%);
-  --background: linear-gradient(135deg, #914817 0%, #76421f 50%, #8d481b 100%);
+  --card-gradient: linear-gradient(145deg, #f7f4ef 0%, #f7f4ef 100%);
+  --background: linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 50%, #FFFFFF 100%);
   --text-color: #000000; 
 }
 
@@ -24,7 +24,7 @@
   --btn-gradient: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
   --card-gradient: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
   --background: linear-gradient(135deg, #1e293b 0%, #1e293b 50%, #1e293b 100%);
-  --text-color: #ffffff; 
+  --text-color: #d9caca; 
 }
 
 /*  Navbar background */

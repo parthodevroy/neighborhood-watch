@@ -35,6 +35,8 @@ import RecentIssues from './RecentIssues';
 import Stats from './Stats';
 import Banner1 from './Banner1';
 import HomeBanner from './HomeBanner';
+import NewsSection from './NewsSection';
+import NeighborHome from './NeighborHome';
 
 const Homebar = () => {
     return (
@@ -42,14 +44,18 @@ const Homebar = () => {
             
             <Banner1/>
 
-            <CategoryCards />
+            
              <RecentIssues />
+             <NewsSection/>
+             <NeighborHome/>
+             <CategoryCards />
               <Banner/>
 
              <HomeBanner></HomeBanner>
              
-             <Stats />
+            
             <VolunteerCTA/>
+             <Stats />
 
            
             

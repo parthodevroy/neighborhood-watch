@@ -15,7 +15,7 @@ const Issue = ({ issu }) => {
         <p className="text-sm text-gray-500 mb-2">
           <span className="text-lg font-semibold text-red-600">{category}</span> • {location}
         </p>
-        <p className="text-collor flex-grow">{description}</p>
+        <p className="text-collor flex-grow">{description.slice(0, 30)}....</p>
       </div>
 
      

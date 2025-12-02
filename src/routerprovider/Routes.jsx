@@ -15,6 +15,7 @@ import UpdateProfile from "../component/authentication/UpdateProfile";
 import MyIssues from "../component/issues/MyIssues";
 import NotFound from "../component/root/NotFound";
 import PrivateRoutes from "../component/privateroutes/PrivateRoutes";
+import Support from "../component/Pages/Support";
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +70,12 @@ export const router = createBrowserRouter([
           path:"/myissues",
           element:<PrivateRoute>
             <MyIssues></MyIssues>
+          </PrivateRoute>
+        },
+        {
+          path:"/support",
+          element:<PrivateRoute>
+            <Support/>
           </PrivateRoute>
         }
     ]

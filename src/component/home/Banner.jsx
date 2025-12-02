@@ -17,7 +17,7 @@ const Banner = () => {
   ];
 
   return (
-    <div className="w-full flex justify-center items-center py-8">
+    <div className="max-w-6xl mx-auto flex justify-center items-center py-4">
      
       <div className="relative w-[90%] md:w-[80%] lg:w-[70%] h-[300px] overflow-hidden rounded-2xl shadow-lg">
         {slides.map((slide, idx) => (

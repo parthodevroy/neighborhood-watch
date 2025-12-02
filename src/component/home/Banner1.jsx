@@ -36,7 +36,7 @@ const Banner1 = () => {
   }, [slides.length]);
 
   return (
-    <div className="relative h-[600px] w-full overflow-hidden">
+    <div className="relative h-[400px] max-w-6xl mx-auto rounded-xl overflow-hidden">
       {slides.map((slide, idx) => (
         <div
           key={idx}

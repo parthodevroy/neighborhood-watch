@@ -51,8 +51,8 @@ useEffect(() => {
           to="/"
           className={({ isActive }) =>
             isActive
-              ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-              : "text-color font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+              ? "text-color font-extrabold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+              : "text-color font-extrabold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
           }
         >
           Home
@@ -63,8 +63,8 @@ useEffect(() => {
           to="/issues"
           className={({ isActive }) =>
             isActive
-              ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-              : "text-color font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+              ? "text-color font-extrabold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+              : "text-color font-extrabold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
           }
         >
          All Issues
@@ -78,8 +78,8 @@ useEffect(() => {
               to="/mycontribution"
               className={({ isActive }) =>
                 isActive
-                  ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-                  : "text-color font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+                  ? "text-color font-extrabold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+                  : "text-color font-extrabold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
               }
             >
               My Contribution
@@ -90,8 +90,8 @@ useEffect(() => {
               to="/addissues"
               className={({ isActive }) =>
                 isActive
-                  ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-                  : "text-color font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+                  ? "text-color font-extrabold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+                  : "text-color font-extrabold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
               }
             >
               Report Issues
@@ -103,11 +103,23 @@ useEffect(() => {
         to="/myissues"
         className={({ isActive }) =>
           isActive
-            ? "text-color font-bold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
-            : "text-color font-bold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+            ? "text-color font-extrabold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+            : "text-color font-extrabold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
         }
       >
         My Reported Issues
+      </NavLink>
+    </li>
+          <li className="mx-2">
+      <NavLink
+        to="/support"
+        className={({ isActive }) =>
+          isActive
+            ? "text-color font-extrabold text-xls border-b-2 border-red-500 px-2 py-1 transition-all"
+            : "text-color font-extrabold text-xls hover:text-[#06b6d4] px-2 py-1 transition-all"
+        }
+      >
+    Support
       </NavLink>
     </li>
         </>
@@ -116,7 +128,7 @@ useEffect(() => {
   );
 
   return (
-    <div className="navbar bg-navbar text-white shadow-md px-6 py-2 flex justify-between items-center">
+    <div className="navbar bg-navbar max-w-6xl mx-auto text-color  px-4 py-6 flex justify-between items-center">
 
      
 <Link to="/" className="flex items-center gap-3">
@@ -131,7 +143,7 @@ useEffect(() => {
 
   
   <span className="text-2xl font-extrabold text-color tracking-wide">
-    Neighborhood <br />  <span className="text-white">Watch</span>
+    Neighborhood <br />  <span className="text-green-500">Watch</span>
   </span>
 </Link>
 
@@ -157,7 +169,7 @@ useEffect(() => {
                   className="w-full h-full object-cover"
                 />
               ) : (
-                <FaUserCircle className="w-full h-full text-gray-300" />
+                <FaUserCircle className="w-full h-full text-gray-color" />
               )}
             </button>
 
@@ -165,7 +177,7 @@ useEffect(() => {
               <div className="absolute right-0 mt-2 bg-card text-color rounded-lg shadow-lg w-44 z-50">
                 <div className="px-4 py-2 border-b">
                   <p className="font-semibold">{user?.displayName || "User"}</p>
-                  <p className="text-sm text-gray-500">{user.email || "No email"}</p>
+                  <p className="text-sm text-gray-color">{user.email || "No email"}</p>
                 </div>
                 <ul>
                   <li>
@@ -195,7 +207,7 @@ useEffect(() => {
           </div>
         ) : (
           <Link to="/login">
-            <button className="bg-btn text-white px-6 py-2 rounded-xl font-semibold hover-glow">
+            <button className="bg-btn text-color px-6 py-2 rounded-xl font-semibold hover-glow">
               Log In
             </button>
           </Link>
