@@ -46,13 +46,13 @@ const CategoryCards = () => {
       >
         {categories.map((cat, index) => (
           <SwiperSlide key={index} className="!w-[410px]">
-            <div className="bg-[#1a1a1a] rounded-2xl shadow-lg p-5 text-center hover:scale-105 duration-300">
+            <div className="bg-card rounded-2xl shadow-lg p-5 text-center ">
               <img
                 src={cat.image}
                 className="h-40 w-full rounded-xl object-cover"
                 alt={cat.name}
               />
-              <h3 className="text-xl font-bold text-white mt-4">{cat.name}</h3>
+              <h3 className="text-xl font-bold text-color mt-4">{cat.name}</h3>
             </div>
           </SwiperSlide>
         ))}

@@ -4,12 +4,24 @@ import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from "react-icons/f
 
 const Footer = () => {
   return (
-    <footer className="bg-[#1f2937] text-white pt-8 pb-6">
+    <footer className="bg-[#1f2937] max-w-6xl mx-auto rounded-2xl text-white pt-8 pb-6">
       <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-4 gap-8">
 
         
         <div>
-          <h2 className="text-2xl font-bold text-[#06b6d4] mb-3">Neighborhood Watch</h2>
+          <Link to="/" className="flex items-center gap-3">
+                   <div className="w-11 h-11 rounded-full overflow-hidden border shadow">
+                     <img
+                       src="https://cdn.pixabay.com/photo/2018/08/05/10/58/work-3585353_1280.jpg"
+                       alt="Logo"
+                       className="w-full h-full object-cover"
+                     />
+                   </div>
+                   <span className="font-extrabold text-xl leading-tight">
+                     Neighborhood <br />
+                     <span className="text-primary">Watch</span>
+                   </span>
+                 </Link>
           <p className="text-gray-300 text-sm">
             Join our community to make our neighborhood safer and cleaner. Report issues, track contributions, and help build a better society.
           </p>

@@ -28,7 +28,7 @@ const handleContribute = () => {
   }
 };
 
-// console.log(user);
+console.log(issue);
 
 
 
@@ -41,14 +41,14 @@ useEffect(() => {
 
         const res = await fetch(
           `https://neighborhood-watch-server.vercel.app/issues/${id}`,
-          {
-            headers: {
-              authorization: `Bearer ${user.accessToken}`
+          // {
+          //   headers: {
+          //     authorization: `Bearer ${user.accessToken}`
              
-            },
+          //   },
            
             
-          }
+          // }
         );
 
         if (!res.ok) {

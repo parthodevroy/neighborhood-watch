@@ -73,7 +73,7 @@ const handelregister = (e) => {
 };
 
   return (
-    <div className="hero bg-green-50 min-h-screen flex items-center justify-center">
+    <div className="hero min-h-screen flex items-center justify-center">
       <div className="card bg-card w-full max-w-md shadow-2xl rounded-2xl p-6">
         <h2 className="text-2xl font-extrabold text-[#1e3a8a] text-center mb-6">Register Now</h2>
         <form onSubmit={handelregister} className="flex flex-col gap-4">

@@ -133,7 +133,7 @@ console.log(contributions);
   if (loading) return <p className="text-center mt-10"><Loading></Loading></p>;
 
   return (
-    <div className="p-6">
+    <div className="p-6 max-w-6xl mx-auto">
       <Toaster position="top-center" />
       <h2 className="text-3xl font-bold mb-6 text-center text-blue-700">
         My Contributions
@@ -151,7 +151,7 @@ console.log(contributions);
       {contributions.length === 0 ? (
         <p className="text-center text-color">No contributions yet.</p>
       ) : (
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
+        <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-6">
           {contributions.map((c) => (
             <div
               key={c._id}

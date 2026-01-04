@@ -16,6 +16,13 @@ import MyIssues from "../component/issues/MyIssues";
 import NotFound from "../component/root/NotFound";
 import PrivateRoutes from "../component/privateroutes/PrivateRoutes";
 import Support from "../component/Pages/Support";
+import DashboardHome from "./Dashboard/DashboardHome";
+import Myissues from "./Dashboard/Myissu";
+import MyContribution from "./Dashboard/MyContribution";
+import Profile from "./Dashboard/Profile";
+import DashBoardLayout from "./Dashboard/DashboardLayout";
+import About from "../component/home/About";
+import Contact from "../component/home/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -32,8 +39,7 @@ export const router = createBrowserRouter([
         {
           path:"/issues/:id",
           element:
-           <PrivateRoutes> <IssuDetails></IssuDetails></PrivateRoutes>
-         
+          <IssuDetails></IssuDetails>
         },
         {
           path:"/register",
@@ -73,11 +79,39 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         },
         {
+          path:"/about",
+          element:
+            <About/>
+         
+        },
+        {
           path:"/support",
-          element:<PrivateRoute>
+          element:
             <Support/>
-          </PrivateRoute>
-        }
+         
+        },
+        {
+          path:"/contact",
+          element:
+            <Contact/>
+         
+        },
+       {
+  path: "/dashboard",
+  element: (
+    <PrivateRoute>
+      <DashBoardLayout />   
+    </PrivateRoute>
+  ),
+  children: [
+    { index: true, element: <DashboardHome /> },
+    { path: "my-issues", element: <Myissues /> },
+    { path: "my-contribution", element: <MyContribution /> },
+    { path: "profile", element: <Profile /> },
+  ]
+}
+
+
     ]
     
   },

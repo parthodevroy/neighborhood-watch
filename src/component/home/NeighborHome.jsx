@@ -21,7 +21,7 @@ export default function NeighborHome() {
   ];
 
   return (
-    <div className="bg-navbar max-w-6xl mx-auto rounded-xl text-color py-8 px-6 md:px-12 lg:px-20">
+    <div className="bg-navbar text-color max-w-7xl mx-auto rounded-xl text-color py-8 px-6 md:px-12 lg:px-20">
       <div className="max-w-6xl mx-auto text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold mb-6 tracking-wide">
           Neighborhood Watch & Community Care
@@ -35,21 +35,21 @@ export default function NeighborHome() {
         {items.map((item, i) => (
           <div
             key={i}
-            className="bg-[#1a1a1a] p-6 rounded-2xl shadow-xl border border-gray-800 hover:border-blue-500 hover:scale-[1.03] transition-all duration-300"
+            className="bg-card text-color p-6 rounded-2xl shadow-xl hover:border-blue-500 "
           >
-            <h2 className="text-2xl font-semibold mb-3 text-blue-400">{item.title}</h2>
-            <p className="text-gray-300 text-base leading-relaxed">{item.desc}</p>
+            <h2 className="text-2xl font-semibold mb-3 text-color">{item.title}</h2>
+            <p className="text-color text-base leading-relaxed">{item.desc}</p>
           </div>
         ))}
       </div>
 
-      <div className="mt-16 bg-[#111] rounded-2xl p-10 shadow-inner border border-gray-800 max-w-6xl mx-auto text-center">
-        <h2 className="text-3xl font-bold text-yellow-400 mb-4">Common Issues Reported in Neighborhoods</h2>
-        <p className="text-gray-300 text-lg max-w-3xl mx-auto mb-8">
+      <div className="mt-16 bg-card text-color rounded-2xl p-10 shadow-inner  max-w-6xl mx-auto text-center">
+        <h2 className="text-3xl font-bold text-green-800 mb-4">Common Issues Reported in Neighborhoods</h2>
+        <p className="text-color text-lg max-w-3xl mx-auto mb-8">
           These are frequent community concerns that residents often face. If you observe any of these problems, report them early to help maintain community well‑being.
         </p>
 
-        <ul className="grid md:grid-cols-2 gap-4 text-left text-gray-200 max-w-4xl mx-auto">
+        <ul className="grid md:grid-cols-2 gap-4 text-left text-white max-w-4xl mx-auto">
           <li className="p-3 bg-[#1b1b1b] rounded-lg border border-gray-700">• Road damage & potholes</li>
           <li className="p-3 bg-[#1b1b1b] rounded-lg border border-gray-700">• Illegal construction activities</li>
           <li className="p-3 bg-[#1b1b1b] rounded-lg border border-gray-700">• Public garbage & waste dumping</li>

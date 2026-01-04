@@ -49,7 +49,7 @@ const Issues = () => {
 
       
       {filteredIssues.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 max-w-6xl mx-auto md:grid-cols-3 lg:grid-cols-4 gap-6">
           {filteredIssues.map((issu) => (
             <Issue key={issu._id} issu={issu} />
           ))}

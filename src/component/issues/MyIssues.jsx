@@ -166,7 +166,7 @@ const MyIssues = () => {
           You haven’t submitted any issues yet.
         </p>
       ) : (
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
+        <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-1 gap-6">
           {issues.map((issue) => (
             <div
               key={issue._id}

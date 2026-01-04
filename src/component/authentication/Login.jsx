@@ -1,10 +1,7 @@
-import React, { use, useState } from 'react';
-
-import { Link, useLocation, useNavigate } from 'react-router';
-
-import { Authcontext } from '../../authcontext/Authcontext';
-import Swal from 'sweetalert2';
-import { BiSolidHide, BiSolidShow } from 'react-icons/bi';
+import React, { use, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
+import { Authcontext } from "../../authcontext/Authcontext";
+import { BiSolidHide, BiSolidShow } from "react-icons/bi";
 
 const Login = () => {
   const { userlogin, googlelogin, setUser } = use(Authcontext);
@@ -13,131 +10,131 @@ const Login = () => {
   const from = location.state?.from || "/issues";
 
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
-    const [showPassword, setShowPassword] = useState(false); 
+  const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  // Email login
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
+    setError("");
+    setLoading(true);
+
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    userlogin(email, password)
-      .then(result => {
-        // console.log("User:", result.user);
-        setSuccess(true);
-        navigate(from, { replace: true });
-        setUser(result.user)
-        
-        e.target.reset();
-      })
-      .catch(err => {
-        // console.error(err);
-        setError(err.message);
-      });
+    try {
+      const result = await userlogin(email, password);
+      setUser(result.user);
+      navigate(from, { replace: true });
+    } catch (err) {
+      setError("Invalid email or password");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  
-
-  // Google login
-  const handleGoogleLogin = () => {
-  googlelogin()
-    .then(result => {
-     
-      setSuccess(true);
-      setUser(result.user)
-      navigate(from, { replace: true }); })
-      
-    .catch(err => setError(err.message));
-};
-
-// // forget psss
-
-// const handleForgotPassword = async () => {
-//   const { value: email } = await Swal.fire({
-//     title: "Reset Password",
-//     input: "email",
-//     inputLabel: "Enter your email",
-//     inputPlaceholder: "Email address",
-//     showCancelButton: true,
-//   });
-
-//   if (!email) return; 
-
-//   forgotPassword(email)
-//     .then(() => {
-//       Swal.fire("Success!", "Password reset email sent! Check your inbox.", "success");
-//     })
-//     .catch(err => {
-//       Swal.fire("Error!", err.message, "error");
-//     });
-// };
-
+  const handleGoogleLogin = async () => {
+    try {
+      setLoading(true);
+      const result = await googlelogin();
+      setUser(result.user);
+      navigate(from, { replace: true });
+    } catch {
+      setError("Google login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="hero bg-green-50 min-h-screen flex items-center justify-center">
-      <div className="card bg-card w-full max-w-md shadow-2xl rounded-2xl p-6">
-        <h2 className="text-2xl font-extrabold text-[#1e3a8a] text-center mb-6">Login Now</h2>
+    <div className="min-h-screen flex items-center justify-center  px-4">
+      <div className="w-full max-w-md bg-card rounded-2xl shadow-xl p-8">
 
-        <form onSubmit={handleLogin} className="flex flex-col gap-4">
-          <div className="flex flex-col">
-            <label className="label font-semibold text-gray-700">Email</label>
-            <input type="email" name='email' className="input input-bordered w-full" placeholder="Email" />
+        {/* Header */}
+        <div className="text-center mb-6">
+          <h1 className="text-3xl font-extrabold text-primary">Welcome Back</h1>
+          <p className="text-sm text-muted mt-1">
+            Login to continue to your account
+          </p>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleLogin} className="space-y-4">
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-semibold mb-1">Email</label>
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="you@example.com"
+              className="input input-bordered w-full focus:border-primary"
+            />
           </div>
 
-          <div className="flex flex-col relative">
-            <label className="label font-semibold text-gray-700">Password</label>
+          {/* Password */}
+          <div className="relative">
+            <label className="block text-sm font-semibold mb-1">Password</label>
             <input
-              type={showPassword ? "text" : "password"} 
-              name='password'
-              className="input input-bordered w-full"
-              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              required
+              placeholder="••••••••"
+              className="input input-bordered w-full pr-10 focus:border-primary"
             />
-         
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-[35px] text-color text-sm"
+              className="absolute right-3 top-[38px] text-muted"
             >
-              {showPassword ? <BiSolidShow></BiSolidShow> :<BiSolidHide/>}
+              {showPassword ? <BiSolidShow /> : <BiSolidHide />}
             </button>
           </div>
-          {/* <div 
-            className="text-blue-500 cursor-pointer underline text-sm"
-            onClick={handleForgotPassword}
-          >
-            Forget Password?
-          </div> */}
 
-          <button type="submit" className="btn pb-2 bg-btn text-white mt-4 hover-glow">
-            Login
+          {/* Error */}
+          {error && (
+            <p className="text-sm text-red-500 bg-red-50 p-2 rounded-md">
+              {error}
+            </p>
+          )}
+
+          {/* Submit */}
+          <button
+            type="submit"
+            disabled={loading}
+            className="btn w-full bg-primary text-white hover:opacity-90 transition"
+          >
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
-                  <p>Create An Account <Link to={"/register"}><span className='text-xl text-red-500'>Register</span></Link></p>
 
-
-        <div className="mt-4 text-center">
-          <p className="text-gray-500 mb-2">OR</p>
-          <button
-            type="button" 
-            onClick={handleGoogleLogin}
-            className="btn bg-white text-black border-[#e5e5e5] flex items-center justify-center gap-2 w-full"
-          >
-            <svg aria-label="Google logo" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-              <g>
-                <path d="m0 0H512V512H0" fill="#fff"></path>
-                <path fill="#34a853" d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"></path>
-                <path fill="#4285f4" d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"></path>
-                <path fill="#fbbc02" d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"></path>
-                <path fill="#ea4335" d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"></path>
-              </g>
-            </svg>
-            Login with Google
-          </button>
+        {/* Divider */}
+        <div className="my-6 flex items-center gap-2">
+          <div className="flex-1 h-px bg-border"></div>
+          <span className="text-xs text-muted">OR</span>
+          <div className="flex-1 h-px bg-border"></div>
         </div>
 
-        {error && <p className='text-red-500 mt-3'>{error}</p>}
-        {success && <p className='text-green-600 mt-3'>Login Successful!</p>}
+        {/* Google Login */}
+        <button
+          onClick={handleGoogleLogin}
+          disabled={loading}
+          className="btn w-full bg-white border border-border text-sm flex items-center justify-center gap-2 hover:bg-muted/40"
+        >
+          <img
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="Google"
+            className="w-4 h-4"
+          />
+          Continue with Google
+        </button>
+
+        {/* Footer */}
+        <p className="text-sm text-center mt-6 text-muted">
+          Don’t have an account?
+          <Link to="/register" className="ml-1 text-primary font-semibold">
+            Register
+          </Link>
+        </p>
       </div>
     </div>
   );

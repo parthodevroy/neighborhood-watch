@@ -11,8 +11,10 @@
   --bg-body: #f9fafb;
   --text-body: #0f172a;
   --bg-gradient: linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 50%, #FFFFFF 100%);
+  /* --bg-gradient: linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 50%, #FFFFFF 100%); */
   --btn-gradient: linear-gradient(135deg, #7C7BE6 0%, #7C7BE6 100%);
-  --card-gradient: linear-gradient(145deg, #f7f4ef 0%, #f7f4ef 100%);
+  --card-gradient: linear-gradient(145deg, #AD9C99 0%, #AD9C99 100%);
+  /* --card-gradient: linear-gradient(145deg, #f7f4ef 0%, #f7f4ef 100%); */
   --background: linear-gradient(135deg, #FFFFFF 0%, #FFFFFF 50%, #FFFFFF 100%);
   --text-color: #000000; 
 }
