@@ -121,6 +121,6 @@ your-project/
 ## Contact
 
 
-**Live URL:** [Live Site](https://hilarious-crumble-f3e3a5.netlify.app/)
+**Live URL:** [Live Site](https://neighborhood-watch-tau.vercel.app/)
 **Email:** [Partho Roy](rpartho787@gmail.com)
 **Project Link:** [Project](https://github.com/parthodevroy/neighborhood-watch)
