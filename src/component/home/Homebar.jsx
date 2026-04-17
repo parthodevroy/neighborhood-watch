@@ -37,6 +37,8 @@ import Banner1 from './Banner1';
 import HomeBanner from './HomeBanner';
 import NewsSection from './NewsSection';
 import NeighborHome from './NeighborHome';
+import SocietyProblemTimeline from './SocietyProblemTimeline';
+import SocietyProblemPercenttest from './SocietyProblemPercentest';
 
 const Homebar = () => {
     return (
@@ -48,11 +50,13 @@ const Homebar = () => {
              <RecentIssues />
              <NewsSection/>
              <NeighborHome/>
-             <CategoryCards />
+             {/* <CategoryCards /> */}
+             <SocietyProblemPercenttest/>
               <Banner/>
 
-             <HomeBanner></HomeBanner>
-             
+            
+             <SocietyProblemTimeline/>
+              <HomeBanner></HomeBanner>
             
             <VolunteerCTA/>
              <Stats />

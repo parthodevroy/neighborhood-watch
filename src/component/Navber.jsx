@@ -71,8 +71,8 @@ const Navbar = () => {
             />
           </div>
           <span className="font-extrabold text-xl leading-tight">
-            Neighborhood <br />
-            <span className="text-primary">Watch</span>
+            Society
+            <span className="text-primary">Hub</span>
           </span>
         </Link>
 
